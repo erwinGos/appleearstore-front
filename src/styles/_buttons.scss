@@ -1,11 +1,17 @@
 $PrimaryBackgroundColor: #951D46;
 $SecondaryBackgroundColor: black;
 
+$PrimaryTextColor: black;
+$SecondaryTextColor: #951D46;
+
 .loginBtn {
     border: none;
     color: white;
     width: 165px;
+    height: 33.6px;
     text-align: center;
+    padding: 8px;
+    border-radius: 3px;
 }
 
 .loginBtn:hover {
@@ -18,4 +24,34 @@ $SecondaryBackgroundColor: black;
 
 .bgSecondaryColor {
     background-color: $SecondaryBackgroundColor;
+}
+
+.navbarLinks:hover {
+    color: $SecondaryTextColor;
+}
+
+.homeBtn {
+    border: none;
+    color: white;
+    text-align: center;
+    padding: 1vh;
+    border-radius: 3px;
+    display: inline-block;
+    .textHomeBtn {
+        padding: 1vh;
+    }
+}
+
+.homeBtn:hover {
+    opacity: 80%;
+}
+
+.HomeRectangle {
+    background-color: $PrimaryBackgroundColor;
+    position: absolute;
+    right: 10%;
+    top: 5%;
+    width  : 100px;
+    height : 100vh;
+    transform: rotate(40deg); 
 }
