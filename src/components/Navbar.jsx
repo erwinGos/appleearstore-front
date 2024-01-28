@@ -42,8 +42,16 @@ const Navbar = () => {
         ))}
       </div>
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-        <Link className="loginBtn bgPrimaryColor">CONNEXION</Link>
-        <Link className="loginBtn bgSecondaryColor ml-2">INSCRIPTION</Link>
+        <Link className="loginBtn bgPrimaryColor">
+        <span className='textLoginBtn'>
+                CONNEXION
+        </span>
+        </Link>
+        <Link className="loginBtn bgSecondaryColor ml-2">
+          <span className='textLoginBtn'>
+                INSCRIPTION
+          </span>
+        </Link>
       </div>
     </nav>
     <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -79,8 +87,16 @@ const Navbar = () => {
               ))}
             </div>
             <div className="py-6">
-            <Link className="loginBtn bgPrimaryColor">CONNEXION</Link>
-            <Link className="loginBtn bgSecondaryColor ml-2">INSCRIPTION</Link>
+            <Link className="loginBtn bgPrimaryColor">
+              <span className='textLoginBtn'>
+                CONNEXION
+              </span>
+            </Link>
+            <Link className="loginBtn bgSecondaryColor ml-2">
+              <span className='textLoginBtn'>
+                INSCRIPTION
+              </span>
+            </Link>
             </div>
           </div>
         </div>
