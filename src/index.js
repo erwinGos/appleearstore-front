@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import './fonts/Sansation_Bold_Italic.ttf';
+import './fonts/Sansation_Bold.ttf';
+import './fonts/Sansation_Italic.ttf';
+import './fonts/Sansation_Light_Italic.ttf';
+import './fonts/Sansation_Light.ttf';
+import './fonts/Sansation_Regular.ttf';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

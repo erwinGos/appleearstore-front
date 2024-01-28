@@ -1,0 +1,21 @@
+$PrimaryBackgroundColor: #951D46;
+$SecondaryBackgroundColor: black;
+
+.loginBtn {
+    border: none;
+    color: white;
+    width: 165px;
+    text-align: center;
+}
+
+.loginBtn:hover {
+    opacity: 80%;
+}
+
+.bgPrimaryColor {
+    background-color: $PrimaryBackgroundColor;
+}
+
+.bgSecondaryColor {
+    background-color: $SecondaryBackgroundColor;
+}

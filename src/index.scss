@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "SansationBoldItalic";
+    src: local("Sansation_Bold_Italic"),
+      url("./fonts/Sansation_Bold_Italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "SansationBold";
+    src: local("Sansation_Bold"),
+      url("./fonts/Sansation_Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "SansationItalic";
+    src: local("Sansation_Italic"),
+      url("./fonts/Sansation_Italic.ttf") format("truetype");
+}
+
+
+@font-face {
+    font-family: "SansationLightItalic";
+    src: local("Sansation_Light_Italic"),
+      url("./fonts/Sansation_Light_Italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "SansationLight";
+    src: local("Sansation_Light"),
+      url("./fonts/Sansation_Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "SensationRegular";
+    src: local("Sansation_Regular"),
+      url("./fonts/Sansation_Regular.ttf") format("truetype");
+}
