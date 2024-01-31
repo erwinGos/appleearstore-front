@@ -4,22 +4,25 @@ $SecondaryBackgroundColor: black;
 $PrimaryTextColor: black;
 $SecondaryTextColor: #951D46;
 
-.loginBtn {
+// Login Page
+.loginPageBtn {
     border: none;
     color: white;
     text-align: center;
-    padding: 1vh;
+    height: 45px;
+    width: 100%;
+    max-width: 237px;
     border-radius: 3px;
-    display: inline-block;
-    .textLoginBtn {
-        padding: 1vh;
-    }
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
 }
-
-.loginBtn:hover {
+.loginPageBtn:hover {
     opacity: 80%;
 }
 
+
+// Home
 .homeBtn {
     border: none;
     color: white;
@@ -31,11 +34,24 @@ $SecondaryTextColor: #951D46;
         padding: 1vh;
     }
 }
-
 .homeBtn:hover {
     opacity: 80%;
 }
 
 
-
+// Navbar
+.loginBtn {
+    border: none;
+    color: white;
+    text-align: center;
+    padding: 1vh;
+    border-radius: 3px;
+    display: inline-block;
+    .textLoginBtn {
+        padding: 1vh;
+    }
+}
+.loginBtn:hover {
+    opacity: 80%;
+}
 

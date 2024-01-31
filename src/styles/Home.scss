@@ -11,5 +11,11 @@ $SecondaryTextColor: #951D46;
     top: 5%;
     width  : 100px;
     height : 100vh;
-    transform: rotate(40deg); 
+    transform: rotate(40deg);
+    z-index: 0;
+}
+
+.ListHomeContent {
+    position: relative;
+    z-index: 10;
 }
