@@ -7,7 +7,7 @@ import Logo from '../Logo.png'
 import { Link } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Accueil', href: '#', current: true },
+  { name: 'Accueil', href: '/', current: true },
   { name: 'Catalogue', href: '#', current: false },
   { name: 'Promotions', href: '#', current: false },
 ]
@@ -15,13 +15,13 @@ const navigation = [
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
-    <header className='bg-[#EEEEEE]'>
+  <header className='bg-[#EEEEEE]'>
     <nav className="mx-auto flex items-center justify-between p-6 lg:px-8" aria-label="Global">
       <div className="flex lg:flex-1">
-        <a href="#" className="-m-1.5 p-1.5">
+        <Link to="/" className="-m-1.5 p-1.5">
           <span className="sr-only">AppleEarStore</span>
           <img className="h-10 w-auto" src={Logo} alt="" />
-        </a>
+        </Link>
         <h3 className='ml-1 font-bold text-2xl text-end'>AppleEarStore</h3>
       </div>
       <div className="flex lg:hidden">
@@ -36,14 +36,22 @@ const Navbar = () => {
       </div>
       <div className="hidden lg:flex lg:gap-x-12">
         {navigation.map((item) => (
-          <Link className="text-sm font-semibold leading-5 text-gray-900 navbarLinks">
+          <Link to={item.href} className="text-sm font-semibold leading-5 text-gray-900 navbarLinks">
             {item.name}
           </Link>
         ))}
       </div>
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-        <Link className="loginBtn bgPrimaryColor">CONNEXION</Link>
-        <Link className="loginBtn bgSecondaryColor ml-2">INSCRIPTION</Link>
+        <Link to="/login" className="loginBtn bgPrimaryColor">
+        <span className='textLoginBtn'>
+                CONNEXION
+        </span>
+        </Link>
+        <Link to="/signup" className="loginBtn bgSecondaryColor ml-2">
+          <span className='textLoginBtn'>
+                INSCRIPTION
+          </span>
+        </Link>
       </div>
     </nav>
     <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -79,8 +87,16 @@ const Navbar = () => {
               ))}
             </div>
             <div className="py-6">
-            <Link className="loginBtn bgPrimaryColor">CONNEXION</Link>
-            <Link className="loginBtn bgSecondaryColor ml-2">INSCRIPTION</Link>
+            <Link to="/login" className="loginBtn bgPrimaryColor">
+              <span className='textLoginBtn'>
+                CONNEXION
+              </span>
+            </Link>
+            <Link to="/signup" className="loginBtn bgSecondaryColor ml-2">
+              <span className='textLoginBtn'>
+                INSCRIPTION
+              </span>
+            </Link>
             </div>
           </div>
         </div>

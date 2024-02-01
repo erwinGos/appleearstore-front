@@ -1,33 +1,53 @@
 @use 'styles/_buttons.scss';
+@use 'styles/Home.scss';
+@use 'styles/Navbar.scss';
+@use 'styles/queries.scss';
+
+$PrimaryBackgroundColor: #951D46;
+$SecondaryBackgroundColor: black;
+
+$PrimaryTextColor: black;
+$SecondaryTextColor: #951D46;
 
 h1 {
     font-family: "SansationBold" !important;
-    font-size: 3.4em;
+    font-size: 3em;
 }
 
 h2 {
     font-family: "SansationBold" !important;
-    font-size: 2.4em;
+    font-size: 2em;
 }
 
 h3 {
     font-family: "SansationBold" !important;
+    font-size: 1.5em;
 }
 
 h4 {
     font-family: "SansationBoldItalic" !important;
+    font-size: 1.5em;
 }
 
 span {
-    font-family: "SensationRegular" !important;
+    font-family: "SansationLight" !important;
+    font-size: 1em !important;
 }
 
 p {
     font-family: "SansationLight" !important;
-    font-size: 1.1em !important;
+    font-size: 1em !important;
 }
 
 a {
-    font-family: "SensationRegular" !important;
-    font-size: 0.8em !important;
+    font-family: "SansationLight" !important;
+    font-size: 1em !important;
+}
+
+.bgPrimaryColor {
+    background-color: $PrimaryBackgroundColor;
+}
+
+.bgSecondaryColor {
+    background-color: $SecondaryBackgroundColor;
 }

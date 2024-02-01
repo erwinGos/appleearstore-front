@@ -1,0 +1,21 @@
+$PrimaryBackgroundColor: #951D46;
+$SecondaryBackgroundColor: black;
+
+$PrimaryTextColor: black;
+$SecondaryTextColor: #951D46;
+
+.HomeRectangle {
+    background-color: $PrimaryBackgroundColor;
+    position: absolute;
+    right: 10%;
+    top: 5%;
+    width  : 100px;
+    height : 100vh;
+    transform: rotate(40deg);
+    z-index: 0;
+}
+
+.ListHomeContent {
+    position: relative;
+    z-index: 10;
+}
