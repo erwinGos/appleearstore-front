@@ -1,32 +1,40 @@
-@use 'styles/_buttons.scss';
-@use 'styles/Home.scss';
+// Main
 @use 'styles/Navbar.scss';
-@use 'styles/queries.scss';
+@use 'styles/_buttons.scss';
+@use 'styles/_colors.scss';
 
-$PrimaryBackgroundColor: #951D46;
-$SecondaryBackgroundColor: black;
+// Home
+@use 'styles/HomePage/Home.scss';
+@use 'styles/HomePage/queries.scss';
 
-$PrimaryTextColor: black;
-$SecondaryTextColor: #951D46;
+// Login
+@use 'styles/LoginPage/Login.scss';
+
+// Sign Up
+@use 'styles/SignUpPage/SignUp.scss';
 
 h1 {
     font-family: "SansationBold" !important;
     font-size: 3em;
+    color: colors.$PrimaryTextColor;
 }
 
 h2 {
     font-family: "SansationBold" !important;
     font-size: 2em;
+    color: colors.$PrimaryTextColor;
 }
 
 h3 {
     font-family: "SansationBold" !important;
     font-size: 1.5em;
+    color: colors.$PrimaryTextColor;
 }
 
 h4 {
     font-family: "SansationBoldItalic" !important;
     font-size: 1.5em;
+    color: colors.$PrimaryTextColor;
 }
 
 span {
@@ -37,17 +45,19 @@ span {
 p {
     font-family: "SansationLight" !important;
     font-size: 1em !important;
+    color: colors.$PrimaryTextColor;
 }
 
 a {
     font-family: "SansationLight" !important;
     font-size: 1em !important;
+    color: colors.$PrimaryTextColor;
 }
 
 .bgPrimaryColor {
-    background-color: $PrimaryBackgroundColor;
+    background-color: colors.$PrimaryBackgroundColor;
 }
 
 .bgSecondaryColor {
-    background-color: $SecondaryBackgroundColor;
+    background-color: colors.$SecondaryBackgroundColor;
 }

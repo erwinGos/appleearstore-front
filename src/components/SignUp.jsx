@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
-    <section className="pt-16 pb-24 bg-[#EEEEEE]">
+    <section className="pt-16 pb-24 backgroundSignUp">
       <div className='text-center mx-auto max-w-96'>
         <h2>Inscription</h2>
         <div className='mt-14'>
@@ -58,8 +58,8 @@ const Login = () => {
             placeholder="Mot de passe"
           />
           <p className='text-left mt-2 mb-12'>Vous avez déjà un compte ? <Link to="/login" className='font-bold hover:opacity-80'>Conntectez-vous ici !</Link></p>
-          <Link className='loginPageBtn bgPrimaryColor'>
-              <span className='textLoginBtn'>
+          <Link className='mx-auto mainButton bgPrimaryColor'>
+              <span>
                   INSCRIPTION
               </span>
           </Link>

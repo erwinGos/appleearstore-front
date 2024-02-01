@@ -6,7 +6,7 @@ import AirpodsShadowImg from '../assets/AirpodsShadow.png';
 
 const PrimaryHomeSection = () => {
   return (
-<section className="PrimaryHomeSection relative overflow-hidden flex flex-col md:flex-row max-h-50 pl-4 md:pl-32 pt-16 pb-24 bg-[#EEEEEE]">
+<section className="PrimaryHomeSection relative overflow-hidden flex flex-col md:flex-row max-h-50 pl-4 md:pl-32 pt-16 pb-24 backgroundPrimarySection">
         <div className='ImageContainer'>
             <img src={AirpodsImg} alt="Airpods" />
             <img src={AirpodsShadowImg} alt="Airpods" />
@@ -31,8 +31,8 @@ const PrimaryHomeSection = () => {
                 </p>
             </li>
             <li className='mt-4'>
-                <Link className='homeBtn bgPrimaryColor'>
-                    <span className='textHomeBtn'>
+                <Link className='mainButton bgPrimaryColor'>
+                    <span>
                         ACHETER MAINTENANT
                     </span>
                 </Link>

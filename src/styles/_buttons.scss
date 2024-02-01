@@ -1,57 +1,30 @@
-$PrimaryBackgroundColor: #951D46;
-$SecondaryBackgroundColor: black;
+@use '_colors.scss';
 
-$PrimaryTextColor: black;
-$SecondaryTextColor: #951D46;
-
-// Login Page
-.loginPageBtn {
+.mainButton {
     border: none;
-    color: white;
+    color: colors.$PrimaryTextButtonColor;
     text-align: center;
     height: 45px;
     width: 100%;
     max-width: 237px;
     border-radius: 3px;
     display: block;
-    margin: 0 auto;
     padding: 10px;
 }
-.loginPageBtn:hover {
+.mainButton:hover {
     opacity: 80%;
 }
 
-
-// Home
-.homeBtn {
+.smallerBtn {
     border: none;
-    color: white;
+    color: colors.$PrimaryTextButtonColor;
     text-align: center;
-    padding: 1vh;
+    padding: 5px 15px 5px 15px;
     border-radius: 3px;
     display: inline-block;
-    .textHomeBtn {
-        padding: 1vh;
-    }
+    font-size: 0.8em !important;
 }
-.homeBtn:hover {
-    opacity: 80%;
-}
-
-
-// Navbar
-.loginBtn {
-    border: none;
-    color: white;
-    text-align: center;
-    padding: 1vh;
-    border-radius: 3px;
-    display: inline-block;
-    .textLoginBtn {
-        padding: 1vh;
-    }
-}
-.loginBtn:hover {
+.smallerBtn:hover {
     opacity: 80%;
 }
 
