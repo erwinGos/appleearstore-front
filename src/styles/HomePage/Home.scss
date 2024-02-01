@@ -1,9 +1,5 @@
 @use '../_colors.scss';
 
-.backgroundPrimarySection {
-    background-color: colors.$PrimarySectionBackgroundColor;
-}
-
 // PrimarySection
 .HomeRectangle {
     background-color: colors.$PrimaryBackgroundColor;
@@ -20,3 +16,4 @@
     position: relative;
     z-index: 10;
 }
+

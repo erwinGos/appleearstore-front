@@ -1,0 +1,5 @@
+@use './_colors.scss';
+
+.footerLinks:hover {
+    color: colors.$SecondaryTextColor;
+}

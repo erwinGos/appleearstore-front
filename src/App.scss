@@ -13,6 +13,9 @@
 // Sign Up
 @use 'styles/SignUpPage/SignUp.scss';
 
+// Footer
+@use 'styles/Footer.scss';
+
 h1 {
     font-family: "SansationBold" !important;
     font-size: 3em;
@@ -54,6 +57,16 @@ a {
     color: colors.$PrimaryTextColor;
 }
 
+// Section backgrounds
+.backgroundPrimarySection {
+    background-color: colors.$PrimarySectionBackgroundColor;
+}
+
+.backgroundSecondarySection {
+    background-color: colors.$SecondarySectionBackgroundColor;
+}
+
+// Small backgrounds
 .bgPrimaryColor {
     background-color: colors.$PrimaryBackgroundColor;
 }
