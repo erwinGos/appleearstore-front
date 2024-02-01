@@ -1,11 +1,12 @@
-$PrimaryBackgroundColor: #951D46;
-$SecondaryBackgroundColor: black;
+@use '../_colors.scss';
 
-$PrimaryTextColor: black;
-$SecondaryTextColor: #951D46;
+.backgroundPrimarySection {
+    background-color: colors.$PrimarySectionBackgroundColor;
+}
 
+// PrimarySection
 .HomeRectangle {
-    background-color: $PrimaryBackgroundColor;
+    background-color: colors.$PrimaryBackgroundColor;
     position: absolute;
     right: 10%;
     top: 5%;

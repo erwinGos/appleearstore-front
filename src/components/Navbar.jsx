@@ -15,7 +15,7 @@ const navigation = [
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
-  <header className='bg-[#EEEEEE]'>
+  <header className='backgroundNavbar'>
     <nav className="mx-auto flex items-center justify-between p-6 lg:px-8" aria-label="Global">
       <div className="flex lg:flex-1">
         <Link to="/" className="-m-1.5 p-1.5">
@@ -42,12 +42,12 @@ const Navbar = () => {
         ))}
       </div>
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-        <Link to="/login" className="loginBtn bgPrimaryColor">
+        <Link to="/login" className="smallerBtn bgPrimaryColor">
         <span className='textLoginBtn'>
                 CONNEXION
         </span>
         </Link>
-        <Link to="/signup" className="loginBtn bgSecondaryColor ml-2">
+        <Link to="/signup" className="smallerBtn bgSecondaryColor ml-2">
           <span className='textLoginBtn'>
                 INSCRIPTION
           </span>
@@ -87,13 +87,13 @@ const Navbar = () => {
               ))}
             </div>
             <div className="py-6">
-            <Link to="/login" className="loginBtn bgPrimaryColor">
-              <span className='textLoginBtn'>
+            <Link to="/login" className="smallerBtn bgPrimaryColor">
+              <span>
                 CONNEXION
               </span>
             </Link>
-            <Link to="/signup" className="loginBtn bgSecondaryColor ml-2">
-              <span className='textLoginBtn'>
+            <Link to="/signup" className="smallerBtn bgSecondaryColor ml-2">
+              <span>
                 INSCRIPTION
               </span>
             </Link>

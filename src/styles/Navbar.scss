@@ -1,9 +1,13 @@
-$PrimaryBackgroundColor: #951D46;
-$SecondaryBackgroundColor: black;
+@use '_colors.scss';
 
-$PrimaryTextColor: black;
-$SecondaryTextColor: #951D46;
+.navbarLinks {
+    color: colors.$PrimaryTextColor;
+}
 
 .navbarLinks:hover {
-    color: $SecondaryTextColor;
+    color: colors.$SecondaryTextColor;
+}
+
+.backgroundNavbar {
+    background-color: colors.$PrimarySectionBackgroundColor;
 }
