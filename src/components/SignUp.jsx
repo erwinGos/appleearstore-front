@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
-    <section className="pt-16 pb-24 backgroundSignUp">
+    <section className="pt-16 pb-20 backgroundSignUp">
       <div className='text-center mx-auto max-w-96'>
         <h2>Inscription</h2>
         <div className='mt-14'>
