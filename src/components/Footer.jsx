@@ -34,7 +34,7 @@ const Footer = () => {
         <h2 id="footer-heading" className="sr-only">
           Footer
         </h2>
-        <div className="mx-auto p-28">
+        <div className="mx-auto p-24">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="grid grid-cols-2 gap-8 xl:col-span-2">
               <div className="md:grid md:grid-cols-2 md:gap-8">
@@ -116,7 +116,7 @@ const Footer = () => {
           </div>
           <div className="">
             <p className="mt-8">
-              &copy; 2020 Your Company, Inc. All rights reserved.
+              &copy; 2020 Appleearstore, Inc. All rights reserved.
             </p>
         </div>
         </div>
