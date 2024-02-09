@@ -5,17 +5,15 @@ import SecondaryHomeSection from '../components/SecondaryHomeSection';
 import ThirdHomeSection from '../components/ThirdHomeSection';
 import Footer from '../components/Footer';
 
-import AnimatedPage from '../components/AnimatedPage';
-
 const Home = () => {
     return (
-        <AnimatedPage>
-          <Navbar />
+      <>
+        <Navbar />
           <PrimaryHomeSection />
           <SecondaryHomeSection />
           <ThirdHomeSection />
-          <Footer />
-        </AnimatedPage>
+        <Footer />
+        </>
       );
     };
     

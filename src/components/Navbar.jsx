@@ -42,16 +42,16 @@ const Navbar = () => {
         ))}
       </div>
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-        <Link to="/login" className="smallerBtn bgPrimaryColor">
-        <span className='textLoginBtn'>
-                CONNEXION
-        </span>
-        </Link>
-        <Link to="/signup" className="smallerBtn bgSecondaryColor ml-2">
+          <Link to="/login" className="smallerBtn bgPrimaryColor">
           <span className='textLoginBtn'>
-                INSCRIPTION
+                  CONNEXION
           </span>
-        </Link>
+          </Link>
+          <Link to="/signup" className="smallerBtn bgSecondaryColor ml-2">
+            <span className='textLoginBtn'>
+                  INSCRIPTION
+            </span>
+          </Link>
       </div>
     </nav>
     <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -80,6 +80,7 @@ const Navbar = () => {
             <div className="space-y-2 py-6">
               {navigation.map((item) => (
                 <Link
+                to={item.href}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 navbarLinks text-gray-900 hover:bg-gray-50"
                 >
                   {item.name}
