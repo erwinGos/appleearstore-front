@@ -4,7 +4,10 @@ import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Logo from '../Logo.png'
 
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { Link, useNavigate } from 'react-router-dom';
+import { checkAuthUser, logoutUser } from '../features/user/UserSlice';
 
 const navigation = [
   { name: 'Accueil', href: '/', current: true },
@@ -13,7 +16,21 @@ const navigation = [
 ]
 
 const Navbar = () => {
+  const user = useSelector(state => state.user);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogoutEvent = () => {
+    dispatch(logoutUser()).then(
+      () => {
+        dispatch(checkAuthUser());
+        navigate('/');
+      }
+    );
+  }
+
   return (
   <header className='backgroundNavbar'>
     <nav className="mx-auto flex items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -42,16 +59,27 @@ const Navbar = () => {
         ))}
       </div>
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link to="/login" className="smallerBtn bgPrimaryColor">
-          <span className='textLoginBtn'>
-                  CONNEXION
-          </span>
-          </Link>
-          <Link to="/signup" className="smallerBtn bgSecondaryColor ml-2">
+        { user.isAuth ?
+
+            <Link onClick={() => handleLogoutEvent()} className="smallerBtn bgSecondaryColor ml-2">
             <span className='textLoginBtn'>
-                  INSCRIPTION
+                DECONNEXION
             </span>
           </Link>
+            :
+            <>
+            <Link to="/login" className="smallerBtn bgPrimaryColor">
+            <span className='textLoginBtn'>
+                    CONNEXION
+            </span>
+            </Link>
+            <Link to="/signup" className="smallerBtn bgSecondaryColor ml-2">
+              <span className='textLoginBtn'>
+                    INSCRIPTION
+              </span>
+            </Link>
+            </>
+        }
       </div>
     </nav>
     <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>

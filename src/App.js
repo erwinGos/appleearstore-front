@@ -2,10 +2,16 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './views/Home';
 import LoginPage from './views/LoginPage';
 import SignupPage from './views/SignUpPage';
+import { useDispatch } from 'react-redux';
+import { checkAuthUser } from './features/user/UserSlice';
+
 
 import './App.scss';
 
+
 function App() {
+  const dispatch = useDispatch();
+  dispatch(checkAuthUser());
   return (
     <BrowserRouter>
           <Routes>
