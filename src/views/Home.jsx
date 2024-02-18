@@ -1,15 +1,15 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import PrimaryHomeSection from '../components/PrimaryHomeSection';
-
-import AnimatedPage from '../components/AnimatedPage';
+import SecondaryHomeSection from '../components/SecondaryHomeSection';
+import ThirdHomeSection from '../components/ThirdHomeSection';
 
 const Home = () => {
     return (
-        <AnimatedPage>
-          <Navbar />
+      <>
           <PrimaryHomeSection />
-        </AnimatedPage>
+          <SecondaryHomeSection />
+          <ThirdHomeSection />
+        </>
       );
     };
     

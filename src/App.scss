@@ -1,32 +1,43 @@
-@use 'styles/_buttons.scss';
-@use 'styles/Home.scss';
+// Main
 @use 'styles/Navbar.scss';
-@use 'styles/queries.scss';
+@use 'styles/_buttons.scss';
+@use 'styles/_colors.scss';
 
-$PrimaryBackgroundColor: #951D46;
-$SecondaryBackgroundColor: black;
+// Home
+@use 'styles/HomePage/Home.scss';
+@use 'styles/HomePage/queries.scss';
 
-$PrimaryTextColor: black;
-$SecondaryTextColor: #951D46;
+// Login
+@use 'styles/LoginPage/Login.scss';
+
+// Sign Up
+@use 'styles/SignUpPage/SignUp.scss';
+
+// Footer
+@use 'styles/Footer.scss';
 
 h1 {
     font-family: "SansationBold" !important;
     font-size: 3em;
+    color: colors.$PrimaryTextColor;
 }
 
 h2 {
     font-family: "SansationBold" !important;
     font-size: 2em;
+    color: colors.$PrimaryTextColor;
 }
 
 h3 {
     font-family: "SansationBold" !important;
     font-size: 1.5em;
+    color: colors.$PrimaryTextColor;
 }
 
 h4 {
-    font-family: "SansationBoldItalic" !important;
+    font-family: "SansationLight" !important;
     font-size: 1.5em;
+    color: colors.$PrimaryTextColor;
 }
 
 span {
@@ -37,17 +48,54 @@ span {
 p {
     font-family: "SansationLight" !important;
     font-size: 1em !important;
+    color: colors.$PrimaryTextColor;
+}
+
+input {
+    font-family: "SansationLight" !important;
+    font-size: 1em !important;
+    color: colors.$PrimaryTextColor;
 }
 
 a {
     font-family: "SansationLight" !important;
     font-size: 1em !important;
+    color: colors.$PrimaryTextColor;
 }
 
+// Section backgrounds
+.backgroundPrimarySection {
+    background-color: colors.$PrimarySectionBackgroundColor;
+}
+
+.backgroundSecondarySection {
+    background-color: colors.$SecondarySectionBackgroundColor;
+}
+
+// Small backgrounds
 .bgPrimaryColor {
-    background-color: $PrimaryBackgroundColor;
+    background-color: colors.$PrimaryBackgroundColor;
 }
 
 .bgSecondaryColor {
-    background-color: $SecondaryBackgroundColor;
+    background-color: colors.$SecondaryBackgroundColor;
+}
+
+.borderPrimaryColor {
+    border-color: colors.$PrimaryBackgroundColor;
+}
+
+.colorText {
+    color: colors.$PrimaryBackgroundColor;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
