@@ -43,6 +43,23 @@ const Login = () => {
         <div className='mt-14'>
         <AnimatedPage>
           <form onSubmit={handleLoginEvent}>
+          {error&&(
+              <div className="rounded-md bg-red-50 p-4 mb-4">
+              <div className="flex">
+                <div className="flex-shrink-0">
+                  <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+                </div>
+                <div className="ml-3">
+                  <h3 className="text-sm font-medium text-red-800">Une erreur est survenue</h3>
+                  <div className="mt-2 text-sm text-red-700">
+                    <ul role="list" className="list-disc space-y-1 pl-5">
+                      <li>{error}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            )}
             <label htmlFor="email" className="sr-only">
               Email
             </label>
@@ -70,24 +87,7 @@ const Login = () => {
             <p className='text-left mt-2 mb-12'>Pas encore de compte ? <Link to="/signup" className='font-bold hover:opacity-80'>Inscrivez-vous ici !</Link></p>
             <button type='submit' className='mx-auto mainButton bgPrimaryColor'>
               {loading? 'Chargement...':'CONNEXION'}
-            </button>
-            {error&&(
-              <div className="rounded-md bg-red-50 p-4 mt-4">
-              <div className="flex">
-                <div className="flex-shrink-0">
-                  <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
-                </div>
-                <div className="ml-3">
-                  <h3 className="text-sm font-medium text-red-800">Une erreur est survenue</h3>
-                  <div className="mt-2 text-sm text-red-700">
-                    <ul role="list" className="list-disc space-y-1 pl-5">
-                      <li>{error}</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            )}
+            </button>            
           </form>
         </AnimatedPage>
       </div>

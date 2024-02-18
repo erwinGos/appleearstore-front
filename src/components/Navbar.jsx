@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useState } from 'react'
-import { Dialog } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Dialog, Menu, Transition } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon, BellIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
 import Logo from '../Logo.png'
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,6 +14,10 @@ const navigation = [
   { name: 'Catalogue', href: '#', current: false },
   { name: 'Promotions', href: '#', current: false },
 ]
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
 
 const Navbar = () => {
   const user = useSelector(state => state.user);
@@ -52,20 +56,91 @@ const Navbar = () => {
         </button>
       </div>
       <div className="hidden lg:flex lg:gap-x-12">
-        {navigation.map((item) => (
-          <Link to={item.href} className="text-sm font-semibold leading-5 text-gray-900 navbarLinks">
+        {navigation.map((item, index) => (
+          <Link key={index} to={item.href} className="text-sm font-semibold leading-5 text-gray-900 navbarLinks">
             {item.name}
           </Link>
         ))}
       </div>
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
         { user.isAuth ?
-
-            <Link onClick={() => handleLogoutEvent()} className="smallerBtn bgSecondaryColor ml-2">
-            <span className='textLoginBtn'>
-                DECONNEXION
-            </span>
+        <>
+        <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <Link
+            to='/shoppingcart'
+            type="button"
+            className="relative rounded-full bg-transparent p-1 mr-2 colorText"
+          >
+            <span className="absolute -inset-1.5" />
+            <span className="sr-only">Voir le panier</span>
+            <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
           </Link>
+          <button
+            type="button"
+            className="relative rounded-full bg-transparent p-1 colorText"
+          >
+            <span className="absolute -inset-1.5" />
+            <span className="sr-only">View notifications</span>
+            <BellIcon className="h-6 w-6" aria-hidden="true" />
+          </button>
+          <Menu as="div" className="relative ml-3 border-black">
+            <div>
+              <Menu.Button className="relative flex rounded-full border borderPrimaryColor">
+                <span className="absolute -inset-1.5" />
+                <span className="sr-only">Open user menu</span>
+                <img
+                  className="h-8 w-8 rounded-full"
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt=""
+                />
+              </Menu.Button>
+            </div>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link
+                      href="#"
+                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                    >
+                      Your Profile
+                    </Link>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link
+                      href="#"
+                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                    >
+                      Settings
+                    </Link>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link
+                      onClick={() => handleLogoutEvent()} 
+                      href="#"
+                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                    >
+                      Sign out
+                    </Link>
+                  )}
+                </Menu.Item>
+              </Menu.Items>
+            </Transition>
+        </Menu>
+        </div>
+        </>
             :
             <>
             <Link to="/login" className="smallerBtn bgPrimaryColor">
@@ -106,8 +181,9 @@ const Navbar = () => {
         <div className="mt-6 flow-root">
           <div className="-my-6 divide-y divide-gray-500/10">
             <div className="space-y-2 py-6">
-              {navigation.map((item) => (
+              {navigation.map((item, index) => (
                 <Link
+                key={index}
                 to={item.href}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 navbarLinks text-gray-900 hover:bg-gray-50"
                 >

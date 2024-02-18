@@ -51,6 +51,12 @@ p {
     color: colors.$PrimaryTextColor;
 }
 
+input {
+    font-family: "SansationLight" !important;
+    font-size: 1em !important;
+    color: colors.$PrimaryTextColor;
+}
+
 a {
     font-family: "SansationLight" !important;
     font-size: 1em !important;
@@ -73,4 +79,23 @@ a {
 
 .bgSecondaryColor {
     background-color: colors.$SecondaryBackgroundColor;
+}
+
+.borderPrimaryColor {
+    border-color: colors.$PrimaryBackgroundColor;
+}
+
+.colorText {
+    color: colors.$PrimaryBackgroundColor;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
