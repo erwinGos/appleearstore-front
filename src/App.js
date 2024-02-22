@@ -12,6 +12,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 import ProtectedRoute from './components/ProtectedRoute';
+import ProtectAuth from './components/ProtectAuth';
+
 
 import './App.scss';
 import { GetAllCart } from './features/product/ProductSlice';
@@ -25,12 +27,25 @@ function App() {
     <BrowserRouter>
       <Navbar />
           <Routes>
-              <Route path='/shoppingcart' element={<ProtectedRoute>
+              <Route path='/shoppingcart' 
+              element={
+                <ProtectedRoute>
                   <ShoppingCart />
-              </ProtectedRoute>} />
+                </ProtectedRoute>}/>
+
               <Route path="/" Component={Home} />
-              <Route path="/login" Component={LoginPage} />
-              <Route path="/signup" Component={SignupPage} />
+
+              <Route path="/login" 
+              element={
+                <ProtectAuth>
+                  <LoginPage/>
+                </ProtectAuth>}/>
+
+              <Route path="/signup" 
+              element={
+                <ProtectAuth>
+                  <SignupPage/>
+                </ProtectAuth>}/>
               <Route path='/productdetails/:id' Component={ProductPage} />
           </Routes>
       <Footer />
