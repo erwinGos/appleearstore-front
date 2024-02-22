@@ -89,6 +89,12 @@ a {
     color: colors.$PrimaryBackgroundColor;
 }
 
+
+.Toaster {
+    background-color: colors.$PrimaryBackgroundColor;
+    color: white;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -98,4 +104,9 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.ShoppingCartBuble {
+    color: white;
+    background-color: colors.$PrimaryBackgroundColor;
 }

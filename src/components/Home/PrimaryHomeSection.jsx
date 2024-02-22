@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import AirpodsImg from '../assets/Airpods.png';
-import AirpodsShadowImg from '../assets/AirpodsShadow.png';
+import AirpodsImg from '../../assets/Airpods.png';
+import AirpodsShadowImg from '../../assets/AirpodsShadow.png';
 
-import AnimatedPage from '../components/AnimatedPage';
+import AnimatedPage from '../AnimatedPage';
 
 const PrimaryHomeSection = () => {
   return (

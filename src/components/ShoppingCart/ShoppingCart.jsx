@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
 
-import AnimatedPage from '../components/AnimatedPage';
+import AnimatedPage from '../AnimatedPage';
 
 export default function ShoppingCart() {
   const cart = useSelector(state => state.products.cart);
