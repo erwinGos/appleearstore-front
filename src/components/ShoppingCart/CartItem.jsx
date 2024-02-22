@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CheckCircleIcon, CheckIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import { useDispatch } from 'react-redux';
-import { deleteCart, AddProduct} from '../features/product/ProductSlice';
+import { deleteCart, AddProduct} from '../../features/product/ProductSlice';
 
-import ImageComponent from './ImageComponent';
+import ImageComponent from '../ImageComponent';
 
 export default function CartItem({cart, index}) {
     const dispatch = useDispatch();
@@ -26,7 +26,6 @@ export default function CartItem({cart, index}) {
 
     const handleChangeNewQuantity = event => {
         setNewQuantity(event.target.value);
-
       };
 
     const addToCart = (id, newQuantity) => {
@@ -67,13 +66,13 @@ export default function CartItem({cart, index}) {
                     Quantity, {cart.product.productName}
                 </label>
                 <div ref={input} className='flex'>
-                    <input
-                        onClick={() => setAddVisible(true)}
-                        className="block border-2 font-bold rounded-md w-2/4 focus:outline-none focus:ring focus:ring-violet-300" 
-                        type="number"
-                        onChange={handleChangeNewQuantity}
-                        value={newQuantity}
-                    />
+                        <input
+                            onClick={() => setAddVisible(true)}
+                            className="block border-2 font-bold rounded-md w-2/4 focus:outline-none focus:ring focus:ring-violet-300" 
+                            type="number"
+                            onChange={handleChangeNewQuantity}
+                            value={newQuantity}
+                        />
                     <CheckCircleIcon onClick={() => addToCart(cart.product.id, newQuantity)} id={`checkQuantity-${index}`} className={`${AddVisible ? 'visible' : 'invisible'} ml-2 h-10 w-10 text-gray-500 cursor-pointer`} />
                 </div>
                 <div className="absolute right-0 top-0">

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import ProductCard from './ProductCard';
+import ProductCard from '../Product/ProductCard';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { GetBestProducts } from '../features/product/ProductSlice';
+import { GetBestProducts } from '../../features/product/ProductSlice';
 
 const SecondaryHomeSection = () => {
   const dispatch = useDispatch();
   const {products} = useSelector(state => state.products);
-
+  
   useEffect(() => {
     const productFilter = {
       page: 1,

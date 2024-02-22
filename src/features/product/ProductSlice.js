@@ -67,7 +67,6 @@ const productsSlice = createSlice({
           copyCart.splice(checkItemIndex, 1, action.payload)
           state.cart = copyCart;
         }
-        
       })
     // Cart cases
     builder

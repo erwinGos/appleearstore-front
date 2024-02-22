@@ -1,7 +1,7 @@
 import React from 'react';
-import ImgDelivery from '../assets/Trolley.png';
-import ImgReturn from '../assets/Undo.png';
-import ImgProtect from '../assets/Protect.png';
+import ImgDelivery from '../../assets/Trolley.png';
+import ImgReturn from '../../assets/Undo.png';
+import ImgProtect from '../../assets/Protect.png';
 
 const ThirdHomeSection = () => {
   return (

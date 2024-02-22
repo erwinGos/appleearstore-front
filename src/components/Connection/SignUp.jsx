@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { XCircleIcon } from '@heroicons/react/20/solid';
 import { useDispatch, useSelector } from 'react-redux';
 
-import AnimatedPage from '../components/AnimatedPage';
-import { signUpUser } from '../features/user/UserSlice';
+import AnimatedPage from '../AnimatedPage';
+import { signUpUser } from '../../features/user/UserSlice';
 
 const Login = () => {
   // states

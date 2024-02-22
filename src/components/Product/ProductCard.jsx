@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
-import ProductImg from '../assets/airpod_product.png'
+import ProductImg from '../../assets/airpod_product.png'
 
-import { AddProduct } from '../features/product/ProductSlice';
+import { AddProduct } from '../../features/product/ProductSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 import toast, { Toaster } from 'react-hot-toast';
@@ -27,25 +27,21 @@ const ProductCard = (product) => {
   return (
     <>
       <Toaster
-        position="top-right"
+        position="top-left"
         reverseOrder={false}
         gutter={8}
         containerClassName=""
         containerStyle={{}}
         toastOptions={{
           // Define default options
-          className: '',
+          className: 'Toaster',
           duration: 1000,
-          style: {
-            background: '#363636',
-            color: '#fff',
-          },
 
           // Default options for specific types
           success: {
             duration: 1500,
-            theme: {
-              primary: 'green',
+            iconTheme: {
+              primary: '#FFF',
               secondary: 'black',
             },
           },

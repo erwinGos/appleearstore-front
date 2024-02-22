@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react';
-import { useState } from 'react'
+import React, { Fragment, useState } from 'react';
 import { Dialog, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon, BellIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, BellIcon, ShoppingCartIcon, } from '@heroicons/react/24/outline'
 import Logo from '../Logo.png'
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,6 +20,11 @@ function classNames(...classes) {
 
 const Navbar = () => {
   const user = useSelector(state => state.user);
+  const cart = useSelector(state => state.products.cart);
+  var totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+  if (totalQuantity >= 100) {
+      totalQuantity = "++";
+  }
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const dispatch = useDispatch();
@@ -66,15 +70,18 @@ const Navbar = () => {
         { user.isAuth ?
         <>
         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <Link
-            to='/shoppingcart'
-            type="button"
-            className="relative rounded-full bg-transparent p-1 mr-2 colorText"
-          >
-            <span className="absolute -inset-1.5" />
-            <span className="sr-only">Voir le panier</span>
-            <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
-          </Link>
+        <div className='flex'>
+          <div className='ShoppingCartBuble h-5 w-5 absolute rounded-xl ml-5'>
+            <Link to='/shoppingcart' className='flex justify-center text-white'>{totalQuantity}</Link>
+          </div>
+          <Link
+              to='/shoppingcart'
+              type="button"
+              className="rounded-full bg-transparent p-1 mr-2 colorText"
+            >
+              <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
+            </Link>
+          </div>
           <button
             type="button"
             className="relative rounded-full bg-transparent p-1 colorText"
