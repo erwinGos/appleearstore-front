@@ -1,6 +1,21 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
+
+export async function GetMostSoldProductApi() {
+    const request = await axios.get(`${process.env.REACT_APP_HOST_NAME}/Product/mostsoldproduct`, {
+            headers: {
+            "Access-Control-Allow-Origin": "*",
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Credentials': 'true'
+            },
+            withCredentials: true,
+            credentials: 'include',
+        });
+    const data = request.data;
+    return data;
+}
+
 export async function GetProducts(productFilter) {
     const request = await axios.get(`${process.env.REACT_APP_HOST_NAME}/Product?page=${productFilter.page}&maxResult=${productFilter.maxResult}&brands=${productFilter.brands}`, {
             headers: {

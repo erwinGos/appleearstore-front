@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { GetProducts, AddProductToCart, GetCart, DeleteCart} from "./ProductApi";
+import { GetProducts, AddProductToCart, GetMostSoldProductApi, GetCart, DeleteCart} from "./ProductApi";
 
 
 export const GetBestProducts = createAsyncThunk(
@@ -17,6 +17,14 @@ export const AddProduct = createAsyncThunk(
     return response;
   }
 );
+
+export const GetMostSoldProduct = createAsyncThunk(
+  "product/mostsoldproduct",
+  async () => {
+    const response = await GetMostSoldProductApi();
+    return response;
+  }
+)
 
 export const GetAllCart = createAsyncThunk(
   'product/getcart',
@@ -37,13 +45,14 @@ export const deleteCart = createAsyncThunk(
 
 const initialState = {
     products: null,
+    MostSoldProducts : [],
     cart: []
 };
 
 const productsSlice = createSlice({
-    name: 'products',
-    initialState,
-    extraReducers: (builder) => {
+  name: 'products',
+  initialState,
+  extraReducers: (builder) => {
     // Get products cases
     builder
       .addCase(GetBestProducts.pending, (state) => {
@@ -76,14 +85,19 @@ const productsSlice = createSlice({
       })
 
       // Cart cases
-      builder
-        .addCase(deleteCart.fulfilled, (state, action) => {
-            const copyCart = state.cart;
-            const indexItem = state.cart.findIndex(item => item.id === action.payload.id)
-            copyCart.splice(indexItem, 1)
-            state.cart = copyCart;
-        })
-      }
+    builder
+      .addCase(deleteCart.fulfilled, (state, action) => {
+          const copyCart = state.cart;
+          const indexItem = state.cart.findIndex(item => item.id === action.payload.id)
+          copyCart.splice(indexItem, 1)
+          state.cart = copyCart;
+      })
+
+    builder
+      .addCase(GetMostSoldProduct.fulfilled, (state, action) => {
+        state.MostSoldProducts = action.payload;
+      })
+  }
 });
 
 export default productsSlice.reducer;
