@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { GetProducts, AddProductToCart, GetMostSoldProductApi, GetCart, DeleteCart} from "./ProductApi";
+import { GetProductsApi, AddProductToCart, GetMostSoldProductApi, GetCart, DeleteCart} from "./ProductApi";
 
 
-export const GetBestProducts = createAsyncThunk(
+export const GetProducts = createAsyncThunk(
     'product/getproducts',
     async (productFilter) => {
-      const response = await GetProducts(productFilter);
+      const response = await GetProductsApi(productFilter);
       return response;
     }
 );
@@ -44,9 +44,10 @@ export const deleteCart = createAsyncThunk(
 
 
 const initialState = {
-    products: null,
+    products: [],
     MostSoldProducts : [],
-    cart: []
+    cart: [],
+    loading: false
 };
 
 const productsSlice = createSlice({
@@ -55,13 +56,15 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     // Get products cases
     builder
-      .addCase(GetBestProducts.pending, (state) => {
-        state.products = null;
+      .addCase(GetProducts.pending, (state) => {
+        state.products = [];
+        state.loading = true;
       })
-      .addCase(GetBestProducts.fulfilled, (state, action) => {
+      .addCase(GetProducts.fulfilled, (state, action) => {
         state.products = action.payload;
+        state.loading = false;
       })
-      .addCase(GetBestProducts.rejected, (state, action) => {
+      .addCase(GetProducts.rejected, (state, action) => {
         state.products = null;
       })
 

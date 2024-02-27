@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { GetAllApi } from "./ColorApi";
+import { GetAllApi } from "./brandApi";
 
-export const GetAllColors = createAsyncThunk(
+export const GetAllBrands = createAsyncThunk(
     'color/getall',
     async (params) => {
         const response = await GetAllApi(params);
@@ -14,23 +14,23 @@ const initialState = {
     error: ""
 };
 
-const colorSlice = createSlice({
-    name: 'color',
+const brandSlice = createSlice({
+    name: 'brand',
     initialState,
     extraReducers: (builder) => {
     // Get all colors
         builder
-            .addCase(GetAllColors.pending, (state) => {
+            .addCase(GetAllBrands.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(GetAllColors.fulfilled, (state, action) => {
-                state.colorsList = action.payload;
+            .addCase(GetAllBrands.fulfilled, (state, action) => {
+                state.brandsList = action.payload;
                 state.loading = false;
             })
-            .addCase(GetAllColors.rejected, (state, action) => {
+            .addCase(GetAllBrands.rejected, (state, action) => {
                 state.error = action.payload.message;
             })
     }
 });
 
-export default colorSlice.reducer;
+export default brandSlice.reducer;

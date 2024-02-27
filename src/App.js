@@ -40,7 +40,7 @@ function App() {
             <Route path="/signup" Component={SignupPage} />
             <Route path='/shoppingcart' Component={ShoppingCart} />
             <Route path='/productdetails/:id' Component={ProductPage} />
-            <Route path='/catalog' Component={Catalog} />
+            <Route path='/catalog/:categoryName?' Component={Catalog} />
           </Routes>
       <Footer />
     </BrowserRouter> : null
