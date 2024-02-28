@@ -2,19 +2,14 @@ import React, { useEffect } from 'react';
 import ProductCard from '../Product/ProductCard';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { GetBestProducts } from '../../features/product/ProductSlice';
+import { GetMostSoldProduct } from '../features/product/ProductSlice';
 
 const SecondaryHomeSection = () => {
   const dispatch = useDispatch();
-  const {products} = useSelector(state => state.products);
-  
+  const {MostSoldProducts} = useSelector(state => state.products);
+
   useEffect(() => {
-    const productFilter = {
-      page: 1,
-      maxResult: 10,
-      brands: "test",
-    };
-    dispatch(GetBestProducts(productFilter));
+    dispatch(GetMostSoldProduct());
   }, [dispatch]);
   return (
     <section className="backgroundSecondarySection">
@@ -25,8 +20,8 @@ const SecondaryHomeSection = () => {
             </ul>
             <div className='pt-24 pb-28'>
                 <ul className='flex flex-wrap justify-center'>
-                {Array.isArray(products) && products.length > 0 ? (
-                    products.map((product, index) => (
+                {Array.isArray(MostSoldProducts) && MostSoldProducts.length > 0 ? (
+                    MostSoldProducts.map((product, index) => (
                         <li key={index} className='m-2'><ProductCard product={product} /></li>
                     ))
                     ) : (

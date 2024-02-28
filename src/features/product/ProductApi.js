@@ -1,8 +1,9 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-export async function GetProducts(productFilter) {
-    const request = await axios.get(`${process.env.REACT_APP_HOST_NAME}/Product?page=${productFilter.page}&maxResult=${productFilter.maxResult}&brands=${productFilter.brands}`, {
+
+export async function GetMostSoldProductApi() {
+    const request = await axios.get(`${process.env.REACT_APP_HOST_NAME}/Product/mostsoldproduct`, {
             headers: {
             "Access-Control-Allow-Origin": "*",
             'Content-Type': 'application/json',
@@ -10,6 +11,25 @@ export async function GetProducts(productFilter) {
             },
             withCredentials: true,
             credentials: 'include',
+        });
+    const data = request.data;
+    return data;
+}
+
+export async function GetProductsApi(productFilter) {
+    let parameters = {
+        page : productFilter.page ?? 1,
+        maxResult : productFilter.maxResult ?? 10,
+        brands : productFilter.brands.join(',') ?? null,
+        colors : productFilter.colors.join(',') ?? null,
+        categories : productFilter.categories.join(',') ?? null
+    };
+
+    const request = await axios.get(`${process.env.REACT_APP_HOST_NAME}/Product?page=${parameters.page}&maxResult=${parameters.maxResult}&brands=${parameters.brands}&colors=${parameters.colors}&categories=${parameters.categories}`, {
+            headers: {
+            "Access-Control-Allow-Origin": "*",
+            'Content-Type': 'application/json',
+            }
         });
     const data = request.data;
     return data;

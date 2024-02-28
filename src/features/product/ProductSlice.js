@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { GetProducts, AddProductToCart, GetCart, DeleteCart} from "./ProductApi";
+import { GetProductsApi, AddProductToCart, GetMostSoldProductApi, GetCart, DeleteCart} from "./ProductApi";
 
 
-export const GetBestProducts = createAsyncThunk(
+export const GetProducts = createAsyncThunk(
     'product/getproducts',
     async (productFilter) => {
-      const response = await GetProducts(productFilter);
+      const response = await GetProductsApi(productFilter);
       return response;
     }
 );
@@ -17,6 +17,14 @@ export const AddProduct = createAsyncThunk(
     return response;
   }
 );
+
+export const GetMostSoldProduct = createAsyncThunk(
+  "product/mostsoldproduct",
+  async () => {
+    const response = await GetMostSoldProductApi();
+    return response;
+  }
+)
 
 export const GetAllCart = createAsyncThunk(
   'product/getcart',
@@ -36,23 +44,27 @@ export const deleteCart = createAsyncThunk(
 
 
 const initialState = {
-    products: null,
-    cart: []
+    products: [],
+    MostSoldProducts : [],
+    cart: [],
+    loading: false
 };
 
 const productsSlice = createSlice({
-    name: 'products',
-    initialState,
-    extraReducers: (builder) => {
+  name: 'products',
+  initialState,
+  extraReducers: (builder) => {
     // Get products cases
     builder
-      .addCase(GetBestProducts.pending, (state) => {
-        state.products = null;
+      .addCase(GetProducts.pending, (state) => {
+        state.products = [];
+        state.loading = true;
       })
-      .addCase(GetBestProducts.fulfilled, (state, action) => {
+      .addCase(GetProducts.fulfilled, (state, action) => {
         state.products = action.payload;
+        state.loading = false;
       })
-      .addCase(GetBestProducts.rejected, (state, action) => {
+      .addCase(GetProducts.rejected, (state, action) => {
         state.products = null;
       })
 
@@ -75,14 +87,19 @@ const productsSlice = createSlice({
       })
 
       // Cart cases
-      builder
-        .addCase(deleteCart.fulfilled, (state, action) => {
-            const copyCart = state.cart;
-            const indexItem = state.cart.findIndex(item => item.id === action.payload.id)
-            copyCart.splice(indexItem, 1)
-            state.cart = copyCart;
-        })
-      }
+    builder
+      .addCase(deleteCart.fulfilled, (state, action) => {
+          const copyCart = state.cart;
+          const indexItem = state.cart.findIndex(item => item.id === action.payload.id)
+          copyCart.splice(indexItem, 1)
+          state.cart = copyCart;
+      })
+
+    builder
+      .addCase(GetMostSoldProduct.fulfilled, (state, action) => {
+        state.MostSoldProducts = action.payload;
+      })
+  }
 });
 
 export default productsSlice.reducer;

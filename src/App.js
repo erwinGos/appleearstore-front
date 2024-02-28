@@ -1,29 +1,44 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+
+// Views
 import Home from './views/Home';
 import LoginPage from './views/LoginPage';
 import SignupPage from './views/SignUpPage';
-import ShoppingCart from './components/ShoppingCart/ShoppingCart';
+import ProductPage from './views/ProductPage';
+import Catalog from './views/Catalog';
 
-
-import { useDispatch } from 'react-redux';
+// Redux slices
 import { checkAuthUser } from './features/user/UserSlice';
+import { GetAllCart } from './features/product/ProductSlice';
 
+// Components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import ProtectAuth from './components/ProtectAuth';
 
+import ShoppingCart from './components/ShoppingCart';
+
+
 
 import './App.scss';
 import { GetAllCart } from './features/product/ProductSlice';
 
 import ProductPage from './views/ProductPage';
+
 function App() {
   const dispatch = useDispatch();
-  dispatch(checkAuthUser());
-  dispatch(GetAllCart());
+  const user = useSelector(state => state.user);
+  useEffect(() => {
+    dispatch(checkAuthUser());
+    dispatch(GetAllCart());
+  }, [])
   return (
+    user.isAuth != null ?
     <BrowserRouter>
       <Navbar />
           <Routes>
@@ -47,9 +62,10 @@ function App() {
                   <SignupPage/>
                 </ProtectAuth>}/>
               <Route path='/productdetails/:id' Component={ProductPage} />
+            <Route path='/catalog/:categoryName?' Component={Catalog} />
           </Routes>
       <Footer />
-    </BrowserRouter>
+    </BrowserRouter> : null
   );
 }
 

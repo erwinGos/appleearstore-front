@@ -50,8 +50,15 @@ export const signUpUser = createAsyncThunk(
       }
 );
 
+export const setError = createAsyncThunk(
+    'user/seterror',
+    (error) => {
+        return error;
+    } 
+)
+
 const initialState = {
-    isAuth: false,
+    isAuth: null,
     loading: false,
     user: null,
     error: null
@@ -62,6 +69,11 @@ const userSlice = createSlice({
     initialState,
     extraReducers: (builder) => {
 
+    // Set error
+        builder
+            .addCase(setError.fulfilled, (state, action) => {
+                state.error = action.payload
+            })
     // Login cases
         builder
             .addCase(loginUser.pending,(state) => {
@@ -109,7 +121,6 @@ const userSlice = createSlice({
     // Check auth cases
         builder
             .addCase(checkAuthUser.pending, (state) => {
-                state.isAuth = false;
                 state.loading = true;
             })
             .addCase(checkAuthUser.fulfilled, (state, action) => {
