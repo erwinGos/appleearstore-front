@@ -4,7 +4,7 @@ import { XCircleIcon } from '@heroicons/react/20/solid';
 import { useDispatch, useSelector } from 'react-redux';
 
 import AnimatedPage from '../components/AnimatedPage';
-import { signUpUser } from '../features/user/UserSlice';
+import { setError, signUpUser } from '../features/user/UserSlice';
 
 const Login = () => {
   // states
@@ -30,16 +30,20 @@ const Login = () => {
       lastName
     }
 
-    dispatch(signUpUser(userInformations)).then((result) => {
-      if(result.payload && result.error == null) {
-        setLastName('');
-        setName('');
-        setEmail('');
-        setPassword('');
-        setCheckPassword('');
-        navigate('/');
-      }
-    })
+    if(checkPassword === password) {
+      dispatch(signUpUser(userInformations)).then((result) => {
+        if(result.payload && result.error == null) {
+          setLastName('');
+          setName('');
+          setEmail('');
+          setPassword('');
+          setCheckPassword('');
+          navigate('/');
+        }
+      })
+    } else {
+      dispatch(setError("Veuillez faire correspondre vos mots de passe."))
+    }
   }
   return (
     <section className="sm:pl-0 sm:pr-0 pl-4 pr-4 pt-16 h-[100vh] backgroundSignUp">
