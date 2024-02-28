@@ -37,8 +37,8 @@ const Login = () => {
   }
 
   return (
-    <section className="pt-16 pb-20 backgroundLogin">
-      <div className='text-center mx-auto max-w-80'>
+    <section className="pt-20 backgroundLogin h-[100vh]">
+      <div className='text-center mx-auto max-w-96'>
         <h2>Connexion</h2>
         <div className='mt-14'>
         <AnimatedPage>

@@ -51,7 +51,7 @@ export const signUpUser = createAsyncThunk(
 );
 
 const initialState = {
-    isAuth: false,
+    isAuth: null,
     loading: false,
     user: null,
     error: null
@@ -109,7 +109,6 @@ const userSlice = createSlice({
     // Check auth cases
         builder
             .addCase(checkAuthUser.pending, (state) => {
-                state.isAuth = false;
                 state.loading = true;
             })
             .addCase(checkAuthUser.fulfilled, (state, action) => {

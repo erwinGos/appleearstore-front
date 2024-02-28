@@ -11,7 +11,7 @@ import { checkAuthUser, logoutUser } from '../features/user/UserSlice';
 
 const navigation = [
   { name: 'Accueil', href: '/', current: true },
-  { name: 'Catalogue', href: '#', current: false },
+  { name: 'Catalogue', href: '/catalog', current: false },
   { name: 'Promotions', href: '#', current: false },
 ]
 

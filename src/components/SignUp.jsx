@@ -42,7 +42,7 @@ const Login = () => {
     })
   }
   return (
-    <section className="sm:pl-0 sm:pr-0 pl-4 pr-4 pt-16 pb-20 backgroundSignUp">
+    <section className="sm:pl-0 sm:pr-0 pl-4 pr-4 pt-16 h-[100vh] backgroundSignUp">
       <div className='text-center mx-auto max-w-96'>
         <AnimatedPage>
           <h2>Inscription</h2>
@@ -125,7 +125,7 @@ const Login = () => {
               className="inputBorderColor mt-6 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
               placeholder="Mot de passe"
             />
-            <p className='text-left mt-2 mb-12'>Vous avez déjà un compte ? <Link to="/login" className='font-bold hover:opacity-80'>Conntectez-vous !</Link></p>
+            <p className='text-left mt-2 mb-12'>Vous avez déjà un compte ? <Link to="/login" className='font-bold hover:opacity-80'>Connectez-vous !</Link></p>
             <button type='submit' className='mx-auto mainButton bgPrimaryColor'>
               {loading? 'Chargement...':'INSCRIPTION'}
             </button>
