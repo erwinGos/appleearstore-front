@@ -21,8 +21,8 @@ const ProductCard = ({product}) => {
       productId: id,
       quantity: (checkItem ? checkItem.quantity : 0 ) + 1
     };
-    dispatch(AddProduct(cart));
-    notify();
+    dispatch(AddProduct(cart)).then(() => notify());
+
   }
   return (
     <>
@@ -48,7 +48,7 @@ const ProductCard = ({product}) => {
         }}
       />
       <ul onMouseOver={() => setShowHideBtn(true)} onMouseLeave={() => setShowHideBtn(false)} className='transition duration-500 ease-in-out transform hover:scale-105 hover:shadow-lg border-2 rounded w-auto h-auto flex flex-col justify-end'>
-           <Link to={'/productdetails/' + product.product.id}>
+           <Link to={'/productdetails/' + product.id}>
               <li>
                 <img src={ProductImg} alt="" className="" />
               </li>
@@ -58,17 +58,17 @@ const ProductCard = ({product}) => {
               :
                 <div></div>
             }
-          <Link to={'/productdetails/' + product.product.id}>
+          <Link to={'/productdetails/' + product.id}>
             <li className='pl-2 pt-2'>
-              <h4 className="text-lg md:text-xl lg:text-2xl">{product.product.productName}</h4>
+              <h4 className="text-lg md:text-xl lg:text-2xl">{product.productName}</h4>
             </li>
           </Link>
-          <Link to={'/productdetails/' + product.product.id}>
+          <Link to={'/productdetails/' + product.id}>
             <li className='pl-2'>
-              <p className="text-base md:text-lg">{product.product.brand.name}</p>
+              <p className="text-base md:text-lg">{product.brand.name}</p>
             </li>
           </Link>
-          <Link to={'/productdetails/' + product.product.id}>
+          <Link to={'/productdetails/' + product.id}>
             <li className='pl-2 pb-2 flex'>
             <span className="mr-2 text-lg font-semibold">{product.reduction > 0 ? product.price - product.reduction : product.price} €</span>
             {product.reduction > 0 ? <span className="text-base md:text-lg line-through text-[#951D46] bg-[#FFB4CD] rounded-full pr-1 pl-1">{product.price} €</span> : null}

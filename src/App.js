@@ -12,7 +12,6 @@ import Catalog from './views/Catalog';
 
 // Redux slices
 import { checkAuthUser } from './features/user/UserSlice';
-import { GetAllCart } from './features/product/ProductSlice';
 
 // Components
 import Navbar from './components/Navbar';
@@ -21,14 +20,12 @@ import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import ProtectAuth from './components/ProtectAuth';
 
-import ShoppingCart from './components/ShoppingCart';
+import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 
 
 
 import './App.scss';
 import { GetAllCart } from './features/product/ProductSlice';
-
-import ProductPage from './views/ProductPage';
 
 function App() {
   const dispatch = useDispatch();

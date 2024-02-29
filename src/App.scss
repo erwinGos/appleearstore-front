@@ -86,7 +86,11 @@ a {
 }
 
 .colorText {
-    color: colors.$PrimaryBackgroundColor;
+    color: colors.$PrimaryTextColor;
+}
+
+.secondaryText {
+    color: colors.$SecondaryTextColor
 }
 
 

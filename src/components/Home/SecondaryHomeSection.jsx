@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ProductCard from '../Product/ProductCard';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { GetMostSoldProduct } from '../features/product/ProductSlice';
+import { GetMostSoldProduct } from '../../features/product/ProductSlice';
 
 const SecondaryHomeSection = () => {
   const dispatch = useDispatch();

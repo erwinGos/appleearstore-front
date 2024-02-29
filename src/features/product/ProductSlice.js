@@ -47,6 +47,7 @@ const initialState = {
     products: [],
     MostSoldProducts : [],
     cart: [],
+    maxPages : 0,
     loading: false
 };
 
@@ -57,11 +58,12 @@ const productsSlice = createSlice({
     // Get products cases
     builder
       .addCase(GetProducts.pending, (state) => {
-        state.products = [];
         state.loading = true;
+        state.products = [];
       })
       .addCase(GetProducts.fulfilled, (state, action) => {
-        state.products = action.payload;
+        state.products = action.payload.products;
+        state.maxPages = action.payload.maxPages;
         state.loading = false;
       })
       .addCase(GetProducts.rejected, (state, action) => {
