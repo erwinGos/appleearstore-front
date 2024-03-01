@@ -77,8 +77,19 @@ a {
     background-color: colors.$PrimaryBackgroundColor;
 }
 
+.bgPrimaryColor:hover {
+    background-color: colors.$PrimaryBackgroundColor;
+    transition: all ease 0.5s;
+    opacity: 90%;
+}
+
 .bgSecondaryColor {
     background-color: colors.$SecondaryBackgroundColor;
+}
+
+.bgSecondaryColorHalf {
+    background-color: colors.$SecondaryBackgroundColor;
+    opacity: 50%;
 }
 
 .borderPrimaryColor {

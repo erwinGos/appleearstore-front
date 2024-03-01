@@ -19,7 +19,8 @@ const ProductCard = ({product}) => {
     const checkItem = products.cart.find(item => item.product.id === id);
     let cart = {
       productId: id,
-      quantity: (checkItem ? checkItem.quantity : 0 ) + 1
+      quantity: (checkItem ? checkItem.quantity : 0 ) + 1,
+      colorName: ""
     };
     dispatch(AddProduct(cart)).then(() => notify());
 

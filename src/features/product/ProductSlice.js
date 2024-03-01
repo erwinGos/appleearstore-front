@@ -48,12 +48,18 @@ const initialState = {
     MostSoldProducts : [],
     cart: [],
     maxPages : 0,
+    latestCategory : null,
     loading: false
 };
 
 const productsSlice = createSlice({
   name: 'products',
   initialState,
+  reducers: {
+    setLatestCategory: (state, action) => {
+      state.latestCategory = action.payload.categoryName;
+    },
+  },
   extraReducers: (builder) => {
     // Get products cases
     builder
@@ -82,13 +88,13 @@ const productsSlice = createSlice({
           state.cart = copyCart;
         }
       })
-    // Cart cases
+    // Cart get all cart
     builder
       .addCase(GetAllCart.fulfilled, (state, action) => {
         state.cart = action.payload;
       })
 
-      // Cart cases
+      // Cart delete single
     builder
       .addCase(deleteCart.fulfilled, (state, action) => {
           const copyCart = state.cart;
@@ -97,6 +103,8 @@ const productsSlice = createSlice({
           state.cart = copyCart;
       })
 
+
+      // Products get most sold products
     builder
       .addCase(GetMostSoldProduct.fulfilled, (state, action) => {
         state.MostSoldProducts = action.payload;
@@ -104,4 +112,5 @@ const productsSlice = createSlice({
   }
 });
 
+export const { setLatestCategory } = productsSlice.actions;
 export default productsSlice.reducer;

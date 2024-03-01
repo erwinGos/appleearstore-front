@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { CheckCircleIcon, CheckIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import { useDispatch } from 'react-redux';
 import { deleteCart, AddProduct} from '../../features/product/ProductSlice';
+import blankProduct from '../../assets/blank_product.png';
 
 import ImageComponent from '../ImageComponent';
 
@@ -40,7 +41,9 @@ export default function CartItem({cart, index}) {
     return (
         <>
             <div className="flex-shrink-0">
-            <ImageComponent base64Data={cart.product.productImages != null ? (cart.product.productImages.length > 0 ? cart.product.productImages[0].image : "") : ""} />
+            {cart.product.productImages.length > 0 ? <ImageComponent base64Data={cart.product.productImages != null ? (cart.product.productImages.length > 0 ? cart.product.productImages[0].image : "") : ""} />
+            :
+            <img src={blankProduct} className="h-24 w-24 rounded-md object-cover object-center sm:h-28 sm:w-28" />}
             </div>
             <div className="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
             <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
@@ -53,12 +56,13 @@ export default function CartItem({cart, index}) {
                     </h3>
                 </div>
                 <div className="mt-1 flex text-sm">
-                    <p className="text-gray-500">{cart.product.color}</p>
+                    <p className="text-gray-500">{cart.colorName}</p>
                     {cart.product.size ? (
                     <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">{cart.product.size}</p>
                     ) : null}
                 </div>
-                <p className="mt-1 text-sm font-medium text-gray-900">{cart.product.price} €</p>
+                <p className="mt-1 text-sm font-medium text-gray-900">{cart.product.reduction > 0 ? cart.product.price - cart.product.reduction : cart.product.price} €</p>
+                {cart.product.reduction > 0 ? <span className="text-base md:text-lg line-through text-[#951D46] bg-[#FFB4CD] rounded-full pr-1 pl-1">{cart.product.price} €</span> : null}
                 </div>
 
                 <div className="mt-4 sm:mt-0 sm:pr-9">

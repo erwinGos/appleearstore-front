@@ -35,6 +35,21 @@ export async function GetProductsApi(productFilter) {
     return data;
 }
 
+export async function GetSingleProduct(productId) {
+    const token = Cookies.get('auth_token');
+    const request = await axios.get(`${process.env.REACT_APP_HOST_NAME}/Product/${productId}`, {
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            'Content-Type': 'application/json',
+            Authorization: `${token}`
+        },
+        withCredentials: true,
+        credentials: 'include'
+    });
+    const data = request.data;
+    return data;
+}
+
 export async function AddProductToCart(productAdded) {
     const token = Cookies.get('auth_token');
     const request = await axios.post(`${process.env.REACT_APP_HOST_NAME}/Cart/addtocart`, productAdded, {

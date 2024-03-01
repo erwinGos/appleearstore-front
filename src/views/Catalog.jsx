@@ -9,13 +9,10 @@ import ReactLoading from 'react-loading';
 import { GetAllColors } from '../features/color/ColorSlice';
 import { GetAllBrands } from '../features/brand/brandSlice';
 import { GetProducts } from '../features/product/ProductSlice';
+import { setLatestCategory } from '../features/product/ProductSlice';
 import ProductCard from '../components/Product/ProductCard';
 
 import { Pagination } from '../components/Pagination';
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 const Catalog = () => {
   const { categoryName } = useParams();
@@ -54,6 +51,7 @@ const Catalog = () => {
     if(products.maxPages < 1) {
       SearchForProducts()
     }
+    dispatch(setLatestCategory({ categoryName : categoryName ? categoryName : ""}))
   }, [])
 
   const SearchForProducts = (e) => {

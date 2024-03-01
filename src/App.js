@@ -58,7 +58,7 @@ function App() {
                 <ProtectAuth>
                   <SignupPage/>
                 </ProtectAuth>}/>
-              <Route path='/productdetails/:id' Component={ProductPage} />
+              <Route path='/productdetails/:productId' Component={ProductPage} />
             <Route path='/catalog/:categoryName?' Component={Catalog} />
           </Routes>
       <Footer />
