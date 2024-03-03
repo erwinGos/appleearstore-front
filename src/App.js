@@ -26,6 +26,7 @@ import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 
 import './App.scss';
 import { GetAllCart } from './features/product/ProductSlice';
+import Profile from './views/Profile';
 
 function App() {
   const dispatch = useDispatch();
@@ -58,8 +59,11 @@ function App() {
                 <ProtectAuth>
                   <SignupPage/>
                 </ProtectAuth>}/>
+              
+
+              <Route path='/profile' Component={Profile} />
               <Route path='/productdetails/:productId' Component={ProductPage} />
-            <Route path='/catalog/:categoryName?' Component={Catalog} />
+              <Route path='/catalog/:categoryName?' Component={Catalog} />
           </Routes>
       <Footer />
     </BrowserRouter> : null

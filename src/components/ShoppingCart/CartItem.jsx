@@ -5,6 +5,7 @@ import { deleteCart, AddProduct} from '../../features/product/ProductSlice';
 import blankProduct from '../../assets/blank_product.png';
 
 import ImageComponent from '../ImageComponent';
+import { Link } from 'react-router-dom';
 
 export default function CartItem({cart, index}) {
     const dispatch = useDispatch();
@@ -50,9 +51,11 @@ export default function CartItem({cart, index}) {
                 <div>
                 <div className="flex justify-between">
                     <h3 className="text-md">
-                    <a href={cart.product.href} className="font-medium text-gray-700 hover:text-gray-800">
-                        {cart.product.productName}
-                    </a>
+                    <Link to={"/productdetails/" + cart.product.id}>
+                        <a className="font-medium text-gray-700 hover:text-gray-800">
+                            {cart.product.productName}
+                        </a>
+                    </Link>
                     </h3>
                 </div>
                 <div className="mt-1 flex text-sm">

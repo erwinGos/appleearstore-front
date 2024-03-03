@@ -70,7 +70,7 @@ const ProductCard = ({product}) => {
             </li>
           </Link>
           <Link to={'/productdetails/' + product.id}>
-            <li className='pl-2 pb-2 flex'>
+            <li className='pl-2 pb-2 flex items-start'>
             <span className="mr-2 text-lg font-semibold">{product.reduction > 0 ? product.price - product.reduction : product.price} €</span>
             {product.reduction > 0 ? <span className="text-base md:text-lg line-through text-[#951D46] bg-[#FFB4CD] rounded-full pr-1 pl-1">{product.price} €</span> : null}
             </li>

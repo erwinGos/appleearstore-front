@@ -15,20 +15,29 @@ function classNames(...classes) {
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const products = useSelector(state => state.products);
+  const user = useSelector(state => state.user);
   const notify = () => toast.success('Produit ajouté au panier.');
   const [product, setProduct] = useState();
   const [selectedColor, setSelectedColor] = useState(null)
   let { productId } = useParams();
   
   useEffect(() => {
-    GetSingleProduct(productId)
-    .then((response) => setProduct(response))
+    let findCurrentProduct = products.products.find(product => product.id == productId);
+    if(findCurrentProduct) {
+      setProduct(findCurrentProduct)
+    } else {
+      GetSingleProduct(productId)
+        .then((response) => setProduct(response))
+    }
   }, [])
   
   useEffect(() => console.log(selectedColor), [selectedColor])
 
   const addToCart = (e) => {
     e.preventDefault();
+    if(!user.isAuth) {
+      return;
+    }
     const checkItem = products.cart.find(item => item.product.id === parseInt(productId));
     let cart = {
       productId: productId,
@@ -80,48 +89,49 @@ const ProductDetails = () => {
             <div className="mt-8 lg:col-span-5">
               <form onSubmit={(e) => addToCart(e)}>
                 {/* Color picker */}
-                <div>
-                  <h2 className="text-sm font-medium text-gray-900">Color</h2>
+                {product.colors.length > 0 ?
+                  <div>
+                    <h2 className="text-sm font-medium text-gray-900">Color</h2>
 
-                  <RadioGroup value={selectedColor} onChange={setSelectedColor} className="mt-2">
-                    <RadioGroup.Label className="sr-only">Choose a color</RadioGroup.Label>
-                    <div className="flex items-center space-x-3">
-                      {product.colors.map((color) => (
-                        <RadioGroup.Option
-                          key={color.name}
-                          value={color}
-                          className={({ active, checked }) =>
-                            classNames(
-                              color.selectedColor,
-                              active && checked ? 'ring ring-offset-1' : '',
-                              !active && checked ? 'ring-2' : '',
-                              'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none'
-                            )
-                          }
-                        >
-                          <RadioGroup.Label as="span" className="sr-only">
-                            {color.name}
-                          </RadioGroup.Label>
-                          <span
-                            aria-hidden="true"
-                            style={{backgroundColor: `#${color.hex}`}}
-                            className={classNames(
-                              color.bgColor,
-                              `h-8 w-8 rounded-full border border-black border-opacity-80`
-                            )}
-                          />
-                        </RadioGroup.Option>
-                      ))}
-                    </div>
-                  </RadioGroup>
-                </div>
+                    <RadioGroup value={selectedColor} onChange={setSelectedColor} className="mt-2">
+                      <RadioGroup.Label className="sr-only">Choose a color</RadioGroup.Label>
+                      <div className="flex items-center space-x-3">
+                        {product.colors.map((color) => (
+                          <RadioGroup.Option
+                            key={color.name}
+                            value={color}
+                            className={({ active, checked }) =>
+                              classNames(
+                                color.selectedColor,
+                                active && checked ? 'ring ring-offset-1' : '',
+                                !active && checked ? 'ring-2' : '',
+                                'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none'
+                              )
+                            }
+                          >
+                            <RadioGroup.Label as="span" className="sr-only">
+                              {color.name}
+                            </RadioGroup.Label>
+                            <span
+                              aria-hidden="true"
+                              style={{backgroundColor: `#${color.hex}`}}
+                              className={classNames(
+                                color.bgColor,
+                                `h-8 w-8 rounded-full border border-black border-opacity-80`
+                              )}
+                            />
+                          </RadioGroup.Option>
+                        ))}
+                      </div>
+                    </RadioGroup>
+                  </div>
+                : null}
 
-                <button
-                  type="submit"
-                  className="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bgPrimaryColor px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2"
-                >
-                  Ajouter au panier
-                </button>
+                {user.isAuth ?
+                  <button type="submit" className="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bgPrimaryColor px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2" > Ajouter au panier </button>
+                :
+                  <Link to="/login"><button type="submit" className="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bgPrimaryColor px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2" > Connectez-vous pour ajouter ce produit au panier.</button></Link>
+                }
               </form>
 
               {/* Product details */}

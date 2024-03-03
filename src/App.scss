@@ -100,6 +100,11 @@ a {
     color: colors.$PrimaryTextColor;
 }
 
+.colorTextHover:hover {
+    color: colors.$PrimaryBackgroundColor;
+    transition: all ease 0.2s;
+}
+
 .secondaryText {
     color: colors.$SecondaryTextColor
 }
