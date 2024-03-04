@@ -267,8 +267,10 @@ const Catalog = () => {
                     </fieldset>
                   </div>
                 ))}
-                <button type="submit" className='smallerBtn bgPrimaryColor flex flew-row w-[30%] m-1'>Actualiser</button>
-                <button onClick={() => resetAndResearch()} className='smallerBtn bgSecondaryColor w-[30%] m-1'>Reset</button>
+                <div className='flex'>
+                  <button type="submit" className='smallerBtn bgPrimaryColor flex flew-row w-[30%] m-1'>Actualiser</button>
+                  <button onClick={() => resetAndResearch()} className='smallerBtn bgSecondaryColor w-[30%] m-1'>Reset</button>
+                </div>
               </form>
             </div>
           </aside>

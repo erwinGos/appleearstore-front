@@ -4,11 +4,14 @@ import { Dialog, Disclosure, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useDispatch, useSelector } from 'react-redux';
 import { PlusIcon, MinusIcon } from '@heroicons/react/20/solid'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
+import PersonalInformations from './PersonalInformations';
 
 const SideBar = ({content}) => {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
     const dispatch = useDispatch();
+    const location = useLocation();
 
     const links = [
         {
@@ -16,7 +19,7 @@ const SideBar = ({content}) => {
             links: [
                 {
                     name: "Information personnelles",
-                    url: "/profile/settings"
+                    url: "/profile/personal-settings"
                 },
                 {
                     name: "Activer un chèque-cadeau",
@@ -56,7 +59,7 @@ const SideBar = ({content}) => {
     <div className="min-h-[100vh] h-auto backgroundSecondarySection">
       {/* Mobile filter dialog */}
       <Transition.Root show={mobileFiltersOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-40 lg:hidden" onClose={setMobileFiltersOpen}>
+          <Dialog as="div" className="relative z-40 xl:hidden" onClose={setMobileFiltersOpen}>
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -81,7 +84,7 @@ const SideBar = ({content}) => {
               >
                 <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
                   <div className="flex items-center justify-between px-4">
-                    <h2 className="text-lg font-medium colorText">Filters</h2>
+                    <h2 className="text-lg font-medium colorText">Espace client</h2>
                     <button
                       type="button"
                       className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 secondaryText"
@@ -94,7 +97,16 @@ const SideBar = ({content}) => {
 
                   {/* Links */}
                   <div className="mt-4 border-t border-gray-200">
-                    
+                  {links.map((section, index) => (
+                        <div className='mb-4' style={{marginTop: index == 0 ? 10 : null}}>
+                            <legend className="block text-xl font-medium colorText mb-2 ml-2">{section.name}</legend>
+                            <ul>
+                              {section.links.map((link) => (
+                                <li className='p-3'><Link to={link.url} className={`ml-5 colorTextHover text-md ${location.pathname == link.url ? "colorTextActive" : null}`}>{link.name}</Link></li>
+                              ))}
+                            </ul>
+                        </div>
+                    ))}
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -112,21 +124,21 @@ const SideBar = ({content}) => {
               className="inline-flex items-center xl:hidden p-4"
               onClick={() => setMobileFiltersOpen(true)}
             >
-              <span className="text-md colorText">Filtres</span>
+              <span className="text-md colorText">Espace client</span>
               <PlusIcon className="ml-1 h-5 w-5 flex-shrink-0 colorText" aria-hidden="true" />
             </button>
                                   
             <div className="hidden xl:block">
-                <label htmlFor="results" className="block text-2xl font-medium leading-6 colorText m-4">
+                <label htmlFor="results" className="block text-2xl font-medium leading-6 colorText mb-4">
                     Espace client
                 </label>
                 <div className='w-full border border-1 border-slate-500	rounded-sm'>
                     {links.map((section, index) => (
-                        <div className='mb-4' style={{marginTop: index == 0 ? 10 : null}}>
+                        <div className='mb-4' style={{marginTop: index == 0 ? 10 : null}} >
                             <legend className="block text-xl font-medium colorText mb-2 ml-2">{section.name}</legend>
                             <ul>
                               {section.links.map((link) => (
-                                <li className='p-3'><Link to={link.url} className='ml-5 colorText colorTextHover text-md'>{link.name}</Link></li>
+                                <li className='p-3'><Link to={link.url} className={`ml-5 colorTextHover text-md ${location.pathname == link.url ? "colorTextActive" : null}`}>{link.name}</Link></li>
                               ))}
                             </ul>
                         </div>

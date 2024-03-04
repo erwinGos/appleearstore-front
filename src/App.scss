@@ -85,10 +85,12 @@ a {
 
 .bgSecondaryColor {
     background-color: colors.$SecondaryBackgroundColor;
+    transition: all ease 0.5s;
 }
 
 .bgSecondaryColorHalf {
     background-color: colors.$SecondaryBackgroundColor;
+    transition: all ease 0.5s;
     opacity: 50%;
 }
 
@@ -98,6 +100,10 @@ a {
 
 .colorText {
     color: colors.$PrimaryTextColor;
+}
+
+.colorTextActive {
+    color: colors.$SecondaryTextColor;
 }
 
 .colorTextHover:hover {

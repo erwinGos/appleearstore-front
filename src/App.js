@@ -28,6 +28,11 @@ import './App.scss';
 import { GetAllCart } from './features/product/ProductSlice';
 import Profile from './views/Profile';
 
+import PersonalInformations from './components/Profile/PersonalInformations';
+import Vouchers from './components/Profile/Vouchers/Vouchers';
+import Address from './components/Profile/Addresses/Address';
+import Orders from './components/Profile/Orders/Orders';
+
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
@@ -61,7 +66,16 @@ function App() {
                 </ProtectAuth>}/>
               
 
-              <Route path='/profile' Component={Profile} />
+
+              {/* Profile */}
+              <Route path='/profile/personal-settings' element={<ProtectedRoute><Profile content={<PersonalInformations/>}/></ProtectedRoute>} />
+              <Route path='/profile/vouchers' element={<ProtectedRoute><Profile content={<Vouchers/>}/></ProtectedRoute>} />
+              <Route path='/profile/addresses' element={<ProtectedRoute><Profile content={<Address/>}/></ProtectedRoute>} />
+              <Route path='/profile/orders' element={<ProtectedRoute><Profile content={<Orders/>}/></ProtectedRoute>} />
+
+
+
+
               <Route path='/productdetails/:productId' Component={ProductPage} />
               <Route path='/catalog/:categoryName?' Component={Catalog} />
           </Routes>
