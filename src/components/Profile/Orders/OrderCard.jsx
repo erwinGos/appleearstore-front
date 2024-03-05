@@ -31,19 +31,19 @@ const OrderCard = () => {
             <div className='w-full flex items-start justify-between'>
                 <span className="font-extrabold">Livraison le 7 mars </span>
                 <div className='flex flex-col w-[30%]'>
-                    <button className='smallerBtn bgSecondaryColor m-1'>Initialiser un retour</button>
+                <button className='smallerBtn bgPrimaryColor m-1'>Suivi colis</button>
                 </div>
             </div>
             <div className='w-full flex items-start justify-between'>
                 <div className='flex'>
                     <img src={blankProduct} className="w-[20%]" />
                     <div className='flex flex-col'>
-                        <span className='text-lg colorText mb-1 mx-2'>Apple Airpods 3</span>
+                        <span className='text-xl colorText mb-1 mx-2'>Apple Airpods 3</span>
                         <span className='text-sm mb-1 mx-2'>Couleur : Orange</span>
                     </div>
                 </div>
                 <div className='flex flex-col w-[30%]'>
-                    <button className='smallerBtn bgPrimaryColor m-1'>Suivi colis</button>
+                    <button className='smallerBtn bgSecondaryColor m-1'>Initialiser un retour</button> 
                 </div>
             </div>
         </div>
