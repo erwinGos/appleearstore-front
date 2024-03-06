@@ -2,8 +2,16 @@ import React, { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { PlusIcon, CheckIcon } from '@heroicons/react/24/outline'
 
-const AddAddressCard = () => {
+const AddAddressCard = ({createAddress}) => {
   const [open, setOpen] = useState(false)
+  const [addressForm, setAddressForm] = useState({
+    name: "",
+    street: "",
+    phoneNumber: "",
+    city: "",
+    postalCode: "",
+    country: ""
+});
 
   const cancelButtonRef = useRef(null)
 
@@ -40,12 +48,14 @@ const AddAddressCard = () => {
                       <h3 className="text-md">Ajouter une adresse :</h3>
                     <div className='mt-2'>
                         <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
-                            Name : 
+                            Nom prénom : 
                         </label>
                         <div className="mt-1">
                             <input
                             type="text"
                             name="name"
+                            value={addressForm.name}
+                            onChange={(e) => setAddressForm({...addressForm, name : e.target.value})}
                             id="name"
                             className="block w-1/2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             placeholder="Mon adresse principale"
@@ -60,6 +70,8 @@ const AddAddressCard = () => {
                             <input
                             type="text"
                             name="street"
+                            value={addressForm.street}
+                            onChange={(e) => setAddressForm({...addressForm, street : e.target.value})}
                             id="street"
                             className="block w-1/2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             placeholder="2 rue John Doe"
@@ -74,6 +86,8 @@ const AddAddressCard = () => {
                             <input
                             type="text"
                             name="phoneNumber"
+                            value={addressForm.phoneNumber}
+                            onChange={(e) => setAddressForm({...addressForm, phoneNumber : e.target.value})}
                             id="phoneNumber"
                             className="block w-1/2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             placeholder="+33606060606"
@@ -88,6 +102,8 @@ const AddAddressCard = () => {
                             <input
                             type="text"
                             name="city"
+                            value={addressForm.city}
+                            onChange={(e) => setAddressForm({...addressForm, city : e.target.value})}
                             id="city"
                             className="block w-1/2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             placeholder="Paris"
@@ -102,6 +118,8 @@ const AddAddressCard = () => {
                             <input
                             type="text"
                             name="postalCode"
+                            value={addressForm.postalCode}
+                            onChange={(e) => setAddressForm({...addressForm, postalCode : e.target.value})}
                             id="postalCode"
                             className="block w-1/2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             placeholder="75000"
@@ -115,8 +133,9 @@ const AddAddressCard = () => {
                       <select
                         id="country"
                         name="country"
+                        value={addressForm.country}
+                        onChange={(e) => setAddressForm({...addressForm, country : e.target.value})}
                         className="mt-2 block w-1/2 rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        defaultValue="France"
                       >
                         <option>Allemagne</option>
                         <option>Belgique</option>
@@ -128,12 +147,15 @@ const AddAddressCard = () => {
                   </form>
                   </div>
                   <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
-                    <button onClick={() => setOpen(false)} className="smallerBtn bgPrimaryColor">
+                    <button onClick={() => setOpen(false)} className="  smallerBtn bgSecondaryColor ml-2">
                       <span className='textLoginBtn'>
                               Annuler
                       </span>
                     </button>
-                    <button onClick={() => setOpen(false)} className="smallerBtn bgSecondaryColor ml-2">
+                    <button onClick={() => {
+                      createAddress(addressForm)
+                      setOpen(false)
+                    }} className="smallerBtn bgPrimaryColor">
                       <span className='textLoginBtn'>
                             Ajouter l'adresse
                       </span>
@@ -145,7 +167,7 @@ const AddAddressCard = () => {
           </div>
         </Dialog>
       </Transition.Root>
-      <div onClick={() => setOpen(true)} className='m-2 rounded-md transform hover:scale-105 duration-200 cursor-pointer border border-dotted border-1 border-black/25 w-[250px] h-[200px] flex flex-col justify-center items-center'>
+      <div onClick={() => setOpen(true)} className='m-2 rounded-md transform hover:scale-105 duration-200 cursor-pointer border border-dotted border-1 border-black/25 w-[250px] h-[220px] flex flex-col justify-center items-center'>
         <PlusIcon width={60}/>
         <span className="text-md colorText">Ajouter une adresse</span>
       </div>

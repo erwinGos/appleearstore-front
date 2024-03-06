@@ -1,10 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { GetMyAddressesApi, deleteAddressApi, updateAddressApi } from "./AddressApi";
+import { GetMyAddressesApi, deleteAddressApi, updateAddressApi, CreateAddressApi } from "./AddressApi";
 
 export const getMyAddresses = createAsyncThunk(
     'address/getMyAddresses',
     async () => {
         const response = await GetMyAddressesApi();
+        return response;
+    }
+);
+
+export const createAddress = createAsyncThunk(
+    'address/createAddress',
+    async (addressCreate) => {
+        const response = await CreateAddressApi(addressCreate);
         return response;
     }
 );
@@ -32,7 +40,7 @@ const initialState = {
 };
 
 const addressSlice = createSlice({
-    name: 'voucher',
+    name: 'address',
     initialState,
     extraReducers: (builder) => {
     // Use voucher
@@ -46,6 +54,21 @@ const addressSlice = createSlice({
                 state.loading = false;
             })
             .addCase(getMyAddresses.rejected, (state, action) => {
+                state.error = "une erreur s'est produite";
+            })
+
+        builder
+            .addCase(createAddress.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(createAddress.fulfilled, (state, action) => {
+                let addressCopy = [...state.addresses];
+                addressCopy.push(action.payload);
+                state.addresses = addressCopy;
+                state.loading = false;
+            })
+            .addCase(createAddress.rejected, (state, action) => {
                 state.error = "une erreur s'est produite";
             })
 

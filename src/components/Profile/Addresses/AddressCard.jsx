@@ -42,7 +42,7 @@ const AddressCard = ({address, updateAddress, deleteAddress}) => {
                       <h3 className="text-md">Ajouter une adresse :</h3>
                     <div className='mt-2'>
                         <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
-                            Name : 
+                          Nom prénom : 
                         </label>
                         <div className="mt-1">
                             <input
@@ -141,7 +141,7 @@ const AddressCard = ({address, updateAddress, deleteAddress}) => {
                   </form>
                   </div>
                   <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
-                    <button onClick={() => setOpen(false)} className="smallerBtn bgPrimaryColor">
+                    <button onClick={() => setOpen(false)} className="smallerBtn bgSecondaryColor">
                       <span className='textLoginBtn'>
                               Annuler
                       </span>
@@ -149,9 +149,9 @@ const AddressCard = ({address, updateAddress, deleteAddress}) => {
                     <button onClick={() => {
                       updateAddress(addressForm)
                       setOpen(false)
-                    }} className="smallerBtn bgSecondaryColor ml-2">
+                    }} className="smallerBtn bgPrimaryColor ml-2">
                       <span className='textLoginBtn'>
-                            Ajouter l'adresse
+                            Valider les modifications
                       </span>
                     </button>
                   </div>
@@ -192,7 +192,7 @@ const AddressCard = ({address, updateAddress, deleteAddress}) => {
                     <span>Voulez vous vraiment supprimer cette adresse ? Cette action sera irréversible.</span>
                   </div>
                   <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
-                    <button onClick={() => setOpenDelete(false)} className="smallerBtn bgPrimaryColor">
+                    <button onClick={() => setOpenDelete(false)} className="smallerBtn bgSecondaryColor">
                       <span className='textLoginBtn'>
                               Annuler
                       </span>
@@ -200,7 +200,7 @@ const AddressCard = ({address, updateAddress, deleteAddress}) => {
                     <button onClick={() => {
                       deleteAddress(addressForm.id)
                       setOpenDelete(false)
-                    }} className="smallerBtn bgSecondaryColor ml-2">
+                    }} className="smallerBtn bgPrimaryColor ml-2">
                       <span className='textLoginBtn'>
                             Oui, je supprime mon adresse definitivement.
                       </span>
@@ -212,8 +212,8 @@ const AddressCard = ({address, updateAddress, deleteAddress}) => {
           </div>
         </Dialog>
       </Transition.Root>
-    <div className='m-2 p-4 rounded-md border-[0.5px] border-black/25 w-[250px] h-[200px] flex flex-col items-start'>
-      <span className='text-lg font-bold'>{address.name}</span>
+    <div className='m-2 p-4 rounded-md border-[0.5px] border-black/25 w-[250px] h-[220px] flex flex-col items-start'>
+      <span className='max-w-[180px] text-md font-bold overflow-ellipsis truncate overflow-hidden whitespace-nowrap'>{address.name}</span>
       <span className='colorText'>{address.street}</span>
       <span>{address.city + ", " + address.postalCode}</span>
       <span>{address.country}</span>

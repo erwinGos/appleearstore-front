@@ -2,9 +2,9 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 
-export async function GetMyAddressesApi() {
+export async function GetMyAddressesApi({page, maxResult}) {
     const token = Cookies.get('auth_token');
-    const request = await axios.get(`${process.env.REACT_APP_HOST_NAME}/Address/`, {
+    const request = await axios.get(`${process.env.REACT_APP_HOST_NAME}/Order/list?page=${page}&maxResult=${maxResult}`, {
         headers: {
             'Content-Type': 'application/json',
             Authorization: `${token}`
