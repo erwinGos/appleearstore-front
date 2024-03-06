@@ -145,7 +145,7 @@ const AddAddressCard = () => {
           </div>
         </Dialog>
       </Transition.Root>
-      <div onClick={() => setOpen(true)} className='rounded-md transform hover:scale-105 duration-200 cursor-pointer border border-dotted border-1 border-black/25 w-[200px] h-[200px] flex flex-col justify-center items-center'>
+      <div onClick={() => setOpen(true)} className='m-2 rounded-md transform hover:scale-105 duration-200 cursor-pointer border border-dotted border-1 border-black/25 w-[250px] h-[200px] flex flex-col justify-center items-center'>
         <PlusIcon width={60}/>
         <span className="text-md colorText">Ajouter une adresse</span>
       </div>

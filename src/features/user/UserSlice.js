@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Login, CheckAuth, Logout, SignUp } from "./UserApi";
+import { Login, CheckAuth, GetSelfUserApi, Logout, SignUp } from "./UserApi";
 
 export const loginUser = createAsyncThunk(
     'user/login',
@@ -18,12 +18,20 @@ export const loginUser = createAsyncThunk(
     }
 );
 
+export const GetSelfUser = createAsyncThunk(
+    'user/getSelf',
+    async () => {
+        const response = await GetSelfUserApi();
+        return response;
+    }
+)
+
 export const checkAuthUser = createAsyncThunk(
     'user/checkAuth',
     async () => {
         const response = await CheckAuth();
         return response;
-      }
+    }
 );
 
 export const logoutUser = createAsyncThunk(
@@ -70,67 +78,81 @@ const userSlice = createSlice({
     extraReducers: (builder) => {
 
     // Set error
-        builder
-            .addCase(setError.fulfilled, (state, action) => {
-                state.error = action.payload
-            })
+    builder
+        .addCase(setError.fulfilled, (state, action) => {
+            state.error = action.payload
+        })
     // Login cases
-        builder
-            .addCase(loginUser.pending,(state) => {
-                state.loading = true;
-                state.user = null;
-                state.error = null;
-            })
-            .addCase(loginUser.fulfilled,(state, action) => {
-                state.loading = false;
-                state.isAuth = action.payload ? true : false;
-                state.user = action.payload;
-                state.error = null;
-            })
-            .addCase(loginUser.rejected,(state, action) => {
-                state.loading = false;
-                state.user = null;
-                state.error = action.payload.message;
-            })
+    builder
+        .addCase(loginUser.pending,(state) => {
+            state.loading = true;
+            state.user = null;
+            state.error = null;
+        })
+        .addCase(loginUser.fulfilled,(state, action) => {
+            state.loading = false;
+            state.isAuth = action.payload ? true : false;
+            state.user = action.payload;
+            state.error = null;
+        })
+        .addCase(loginUser.rejected,(state, action) => {
+            state.loading = false;
+            state.user = null;
+            state.error = action.payload.message;
+        })
 
-        // Sign up cases
-        builder
-            .addCase(signUpUser.pending,(state) => {
-                state.loading = true;
-                state.user = null;
-                state.error = null;
-            })
-            .addCase(signUpUser.fulfilled,(state, action) => {
-                state.loading = false;
-                state.isAuth = action.payload ? true : false;
-                state.user = action.payload;
-                state.error = null;
-            })
-            .addCase(signUpUser.rejected,(state, action) => {
-                state.loading = false;
-                state.user = null;
-                state.error = action.payload.message;
-            })
+    // Sign up cases
+    builder
+        .addCase(signUpUser.pending,(state) => {
+            state.loading = true;
+            state.user = null;
+            state.error = null;
+        })
+        .addCase(signUpUser.fulfilled,(state, action) => {
+            state.loading = false;
+            state.isAuth = action.payload ? true : false;
+            state.user = action.payload;
+            state.error = null;
+        })
+        .addCase(signUpUser.rejected,(state, action) => {
+            state.loading = false;
+            state.user = null;
+            state.error = action.payload.message;
+        })
 
     // Logout cases
-        builder
-            .addCase(logoutUser.fulfilled, (state) => {
-                Object.assign(state, initialState);
-            })
+    builder
+        .addCase(logoutUser.fulfilled, (state) => {
+            Object.assign(state, initialState);
+        })
 
     // Check auth cases
-        builder
-            .addCase(checkAuthUser.pending, (state) => {
-                state.loading = true;
-            })
-            .addCase(checkAuthUser.fulfilled, (state, action) => {
-                state.isAuth = action.payload;
-                state.loading = false;
-            })
-            .addCase(checkAuthUser.rejected, (state, action) => {
-                state.isAuth = false;
-                state.loading = false;
-            })
+    builder
+        .addCase(checkAuthUser.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(checkAuthUser.fulfilled, (state, action) => {
+            state.isAuth = action.payload;
+            state.loading = false;
+        })
+        .addCase(checkAuthUser.rejected, (state, action) => {
+            state.isAuth = false;
+            state.loading = false;
+        })
+
+    // Get current user
+    builder
+        .addCase(GetSelfUser.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(GetSelfUser.fulfilled, (state, action) => {
+            state.user = action.payload;
+            state.loading = false;
+        })
+        .addCase(GetSelfUser.rejected, (state, action) => {
+            state.isAuth = false;
+            state.loading = false;
+        })
     }
 });
 

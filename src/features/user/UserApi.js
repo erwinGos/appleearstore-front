@@ -29,6 +29,20 @@ export async function CheckAuth() {
     return data;
 }
 
+export async function GetSelfUserApi() {
+    const token = Cookies.get('auth_token');
+    const request = await axios.get(`${process.env.REACT_APP_HOST_NAME}/User`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `${token}`
+            },
+            withCredentials: true,
+            credentials: 'include',
+        });
+    const data = request.data;
+    return data;
+}
+
 export async function Logout() {
     const request = await axios.get(`${process.env.REACT_APP_HOST_NAME}/Auth/signout`, {
         headers: {

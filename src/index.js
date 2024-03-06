@@ -11,13 +11,14 @@ import './fonts/Sansation_Italic.ttf';
 import './fonts/Sansation_Light_Italic.ttf';
 import './fonts/Sansation_Light.ttf';
 import './fonts/Sansation_Regular.ttf';
-import { checkAuthUser } from './features/user/UserSlice';
+import { GetSelfUser, checkAuthUser } from './features/user/UserSlice';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
 async function init() {
   await store.dispatch(checkAuthUser());
+  await store.dispatch(GetSelfUser());
   root.render(
     <React.StrictMode>
     <Provider store={store}>
