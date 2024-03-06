@@ -73,3 +73,17 @@ export async function SignUp(userInformations) {
     const data = request.data;
     return data;
 }
+
+export async function UpdateUserApi(updateForm) {
+    const token = Cookies.get('auth_token');
+    const request = await axios.patch(`${process.env.REACT_APP_HOST_NAME}/User`, updateForm, {
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `${token}`
+        },
+        withCredentials: true,
+        credentials: 'include',
+    });
+    const data = request.data;
+    return data;
+}

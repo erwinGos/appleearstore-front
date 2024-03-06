@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Login, CheckAuth, GetSelfUserApi, Logout, SignUp } from "./UserApi";
+import { Login, CheckAuth, GetSelfUserApi, UpdateUserApi, Logout, SignUp } from "./UserApi";
 
 export const loginUser = createAsyncThunk(
     'user/login',
@@ -23,6 +23,22 @@ export const GetSelfUser = createAsyncThunk(
     async () => {
         const response = await GetSelfUserApi();
         return response;
+    }
+)
+
+export const UpdateUser = createAsyncThunk(
+    'user/UpdateUser',
+    async (userForm, { rejectWithValue }) => {
+        try {
+            const response = await UpdateUserApi(userForm);
+            return response;
+        } catch (error) {
+            if (error.response && error.response.data) {
+              return rejectWithValue(error.response.data);
+            } else {
+              return rejectWithValue({ message: 'Une erreur est survenue' });
+            }
+        }
     }
 )
 
@@ -115,6 +131,26 @@ const userSlice = createSlice({
             state.error = null;
         })
         .addCase(signUpUser.rejected,(state, action) => {
+            state.loading = false;
+            state.user = null;
+            state.error = action.payload.message;
+        })
+
+        
+    // Update User
+    builder
+        .addCase(UpdateUser.pending,(state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(UpdateUser.fulfilled,(state, action) => {
+            state.loading = false;
+            state.user = action.payload;
+            state.error = null;
+        })
+        .addCase(UpdateUser.rejected,(state, action) => {
+            console.log(action)
+            console.log(state)
             state.loading = false;
             state.user = null;
             state.error = action.payload.message;
