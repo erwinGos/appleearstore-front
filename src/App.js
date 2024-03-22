@@ -32,6 +32,8 @@ import PersonalInformations from './components/Profile/PersonalInformations';
 import Vouchers from './components/Profile/Vouchers/Vouchers';
 import Address from './components/Profile/Addresses/Address';
 import Orders from './components/Profile/Orders/Orders';
+import Returns from './components/Profile/Returns/Returns';
+import Tickets from './components/Profile/Tickets/Tickets';
 
 function App() {
   const dispatch = useDispatch();
@@ -72,6 +74,8 @@ function App() {
               <Route path='/profile/vouchers' element={<ProtectedRoute><Profile content={<Vouchers/>}/></ProtectedRoute>} />
               <Route path='/profile/addresses' element={<ProtectedRoute><Profile content={<Address/>}/></ProtectedRoute>} />
               <Route path='/profile/orders' element={<ProtectedRoute><Profile content={<Orders/>}/></ProtectedRoute>} />
+              <Route path='/profile/returns' element={<ProtectedRoute><Profile content={<Returns/>}/></ProtectedRoute>} />
+              <Route path='/profile/tickets' element={<ProtectedRoute><Profile content={<Tickets/>}/></ProtectedRoute>} />
 
 
 

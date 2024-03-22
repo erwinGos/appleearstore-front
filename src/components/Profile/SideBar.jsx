@@ -98,11 +98,11 @@ const SideBar = ({content}) => {
                   {/* Links */}
                   <div className="mt-4 border-t border-gray-200">
                   {links.map((section, index) => (
-                        <div className='mb-4' style={{marginTop: index == 0 ? 10 : null}}>
+                        <div key={index} className='mb-4' style={{marginTop: index == 0 ? 10 : null}}>
                             <legend className="block text-xl font-medium colorText mb-2 ml-2">{section.name}</legend>
                             <ul>
-                              {section.links.map((link) => (
-                                <li className='p-3'><Link to={link.url} className={`ml-5 colorTextHover text-md ${location.pathname == link.url ? "colorTextActive" : null}`}>{link.name}</Link></li>
+                              {section.links.map((link, key) => (
+                                <li key={key} className='p-3'><Link to={link.url} className={`ml-5 colorTextHover text-md ${location.pathname == link.url ? "colorTextActive" : null}`}>{link.name}</Link></li>
                               ))}
                             </ul>
                         </div>
