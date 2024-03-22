@@ -1,36 +1,39 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { GetAllApi } from "./ColorApi";
+import { useVoucherApi } from "./VoucherApi";
 
 export const useVoucher = createAsyncThunk(
     'voucher/useVoucher',
-    async (params) => {
-        const response = await GetAllApi(params);
+    async (code) => {
+        const response = await useVoucherApi(code);
         return response;
     }
 );
 
 const initialState = {
+    balance: 0,
     vouchers: [],
-    loading : false
+    loading : false,
+    error: null
 };
 
-const colorSlice = createSlice({
+const voucherSlice = createSlice({
     name: 'voucher',
     initialState,
     extraReducers: (builder) => {
-    // Get all colors
+    // Use voucher
         builder
-            .addCase(GetAllColors.pending, (state) => {
+            .addCase(useVoucher.pending, (state) => {
                 state.loading = true;
+                state.error = null;
             })
-            .addCase(GetAllColors.fulfilled, (state, action) => {
-                state.colorsList = action.payload;
+            .addCase(useVoucher.fulfilled, (state, action) => {
+                state.balance += action.payload.amount;
                 state.loading = false;
             })
-            .addCase(GetAllColors.rejected, (state, action) => {
-                state.error = action.payload.message;
+            .addCase(useVoucher.rejected, (state, action) => {
+                state.error = "une erreur s'est produite";
             })
     }
 });
 
-export default colorSlice.reducer;
+export default voucherSlice.reducer;
