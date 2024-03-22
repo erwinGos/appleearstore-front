@@ -12,16 +12,26 @@ import Catalog from './views/Catalog';
 
 // Redux slices
 import { checkAuthUser } from './features/user/UserSlice';
-import { GetAllCart } from './features/product/ProductSlice';
 
 // Components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import ShoppingCart from './components/ShoppingCart';
+
+import ProtectedRoute from './components/ProtectedRoute';
+import ProtectAuth from './components/ProtectAuth';
+
+import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 
 
 
 import './App.scss';
+import { GetAllCart } from './features/product/ProductSlice';
+import Profile from './views/Profile';
+
+import PersonalInformations from './components/Profile/PersonalInformations';
+import Vouchers from './components/Profile/Vouchers/Vouchers';
+import Address from './components/Profile/Addresses/Address';
+import Orders from './components/Profile/Orders/Orders';
 
 function App() {
   const dispatch = useDispatch();
@@ -35,12 +45,39 @@ function App() {
     <BrowserRouter>
       <Navbar />
           <Routes>
-            <Route path="/" Component={Home} />
-            <Route path="/login" Component={LoginPage} />
-            <Route path="/signup" Component={SignupPage} />
-            <Route path='/shoppingcart' Component={ShoppingCart} />
-            <Route path='/productdetails/:id' Component={ProductPage} />
-            <Route path='/catalog/:categoryName?' Component={Catalog} />
+              <Route path='/shoppingcart' 
+              element={
+                <ProtectedRoute>
+                  <ShoppingCart />
+                </ProtectedRoute>}/>
+
+              <Route path="/" Component={Home} />
+
+              <Route path="/login" 
+              element={
+                <ProtectAuth>
+                  <LoginPage/>
+                </ProtectAuth>}/>
+
+              <Route path="/signup" 
+              element={
+                <ProtectAuth>
+                  <SignupPage/>
+                </ProtectAuth>}/>
+              
+
+
+              {/* Profile */}
+              <Route path='/profile/personal-settings' element={<ProtectedRoute><Profile content={<PersonalInformations/>}/></ProtectedRoute>} />
+              <Route path='/profile/vouchers' element={<ProtectedRoute><Profile content={<Vouchers/>}/></ProtectedRoute>} />
+              <Route path='/profile/addresses' element={<ProtectedRoute><Profile content={<Address/>}/></ProtectedRoute>} />
+              <Route path='/profile/orders' element={<ProtectedRoute><Profile content={<Orders/>}/></ProtectedRoute>} />
+
+
+
+
+              <Route path='/productdetails/:productId' Component={ProductPage} />
+              <Route path='/catalog/:categoryName?' Component={Catalog} />
           </Routes>
       <Footer />
     </BrowserRouter> : null

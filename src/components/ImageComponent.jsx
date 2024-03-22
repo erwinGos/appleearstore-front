@@ -11,11 +11,9 @@ const ImageComponent = ({ base64Data }) => {
   }, [base64Data]);
 
   return (
-    <div>
-      {imageUrl && 
+      imageUrl && 
         <img src={imageUrl} className="h-24 w-24 rounded-md object-cover object-center sm:h-28 sm:w-28" />
-      }
-    </div>
+      
   );
 };
 

@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
 
-import AnimatedPage from '../components/AnimatedPage';
+import AnimatedPage from '../AnimatedPage';
+import SelectAddress from './SelectAddress';
 
 export default function ShoppingCart() {
   const cart = useSelector(state => state.products.cart);
@@ -18,6 +19,7 @@ export default function ShoppingCart() {
   let tva = sousTotalTTC - sousTotal;
   let fraisDeLivraison = sousTotal > 0 ? 5 : 0;
   let totalCommande = sousTotalTTC + fraisDeLivraison;
+
   return (
     <div className="backgroundPrimarySection">
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -83,11 +85,14 @@ export default function ShoppingCart() {
               </div>
             </dl>
             <div className="mt-6">
-            <Link className='mainButton bgPrimaryColor'>
-              <span>
-                COMMANDER
-              </span>
-            </Link>
+              <SelectAddress />
+            </div>
+            <div className="mt-6">
+              <Link className='mainButton bgPrimaryColor'>
+                <span>
+                  COMMANDER
+                </span>
+              </Link>
             </div>
             </AnimatedPage>
           </section>

@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react';
-import { useState } from 'react'
+import React, { Fragment, useState } from 'react';
 import { Dialog, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon, BellIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, BellIcon, ShoppingCartIcon, } from '@heroicons/react/24/outline'
 import Logo from '../Logo.png'
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,6 +20,11 @@ function classNames(...classes) {
 
 const Navbar = () => {
   const user = useSelector(state => state.user);
+  const cart = useSelector(state => state.products.cart);
+  var totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+  if (totalQuantity >= 100) {
+      totalQuantity = "++";
+  }
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const dispatch = useDispatch();
@@ -66,15 +70,18 @@ const Navbar = () => {
         { user.isAuth ?
         <>
         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <Link
-            to='/shoppingcart'
-            type="button"
-            className="relative rounded-full bg-transparent p-1 mr-2 colorText"
-          >
-            <span className="absolute -inset-1.5" />
-            <span className="sr-only">Voir le panier</span>
-            <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
-          </Link>
+        <div className='flex'>
+          <div className='ShoppingCartBuble h-5 w-5 absolute rounded-xl ml-5'>
+            <Link to='/shoppingcart' className='flex justify-center text-white'>{totalQuantity}</Link>
+          </div>
+          <Link
+              to='/shoppingcart'
+              type="button"
+              className="rounded-full bg-transparent p-1 mr-2 colorText"
+            >
+              <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
+            </Link>
+          </div>
           <button
             type="button"
             className="relative rounded-full bg-transparent p-1 colorText"
@@ -108,20 +115,10 @@ const Navbar = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      href="#"
+                      to="/profile/personal-settings"
                       className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                     >
-                      Your Profile
-                    </Link>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      href="#"
-                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                    >
-                      Settings
+                      Paramètres
                     </Link>
                   )}
                 </Menu.Item>
@@ -132,13 +129,13 @@ const Navbar = () => {
                       href="#"
                       className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                     >
-                      Sign out
+                      Deconnexion
                     </Link>
                   )}
                 </Menu.Item>
               </Menu.Items>
             </Transition>
-        </Menu>
+          </Menu>
         </div>
         </>
             :
@@ -191,6 +188,53 @@ const Navbar = () => {
                 </Link>
               ))}
             </div>
+            {user.isAuth ?
+            <Menu as="div" className="relative ml-3 border-black">
+            <div className='flex w-full justify-end'>
+              <Menu.Button className="relative flex rounded-full border borderPrimaryColor">
+                <span className="absolute -inset-1.5" />
+                <span className="sr-only"></span>
+                <img
+                  className="h-8 w-8 rounded-full"
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt=""
+                />
+              </Menu.Button>
+            </div>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link
+                      to="/profile/personal-settings"
+                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                    >
+                      Paramètres
+                    </Link>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link
+                      onClick={() => handleLogoutEvent()} 
+                      className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                    >
+                      Deconnexion
+                    </Link>
+                  )}
+                </Menu.Item>
+              </Menu.Items>
+            </Transition>
+            </Menu>
+            : 
             <div className="py-6">
             <Link to="/login" className="smallerBtn bgPrimaryColor">
               <span>
@@ -202,7 +246,7 @@ const Navbar = () => {
                 INSCRIPTION
               </span>
             </Link>
-            </div>
+            </div>}
           </div>
         </div>
       </Dialog.Panel>

@@ -77,8 +77,21 @@ a {
     background-color: colors.$PrimaryBackgroundColor;
 }
 
+.bgPrimaryColor:hover {
+    background-color: colors.$PrimaryBackgroundColor;
+    transition: all ease 0.5s;
+    opacity: 90%;
+}
+
 .bgSecondaryColor {
     background-color: colors.$SecondaryBackgroundColor;
+    transition: all ease 0.5s;
+}
+
+.bgSecondaryColorHalf {
+    background-color: colors.$SecondaryBackgroundColor;
+    transition: all ease 0.5s;
+    opacity: 50%;
 }
 
 .borderPrimaryColor {
@@ -86,7 +99,26 @@ a {
 }
 
 .colorText {
+    color: colors.$PrimaryTextColor;
+}
+
+.colorTextActive {
+    color: colors.$SecondaryTextColor;
+}
+
+.colorTextHover:hover {
     color: colors.$PrimaryBackgroundColor;
+    transition: all ease 0.2s;
+}
+
+.secondaryText {
+    color: colors.$SecondaryTextColor
+}
+
+
+.Toaster {
+    background-color: colors.$PrimaryBackgroundColor;
+    color: white;
 }
 
 input::-webkit-outer-spin-button,
@@ -98,4 +130,9 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.ShoppingCartBuble {
+    color: white;
+    background-color: colors.$PrimaryBackgroundColor;
 }

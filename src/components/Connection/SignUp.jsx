@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { XCircleIcon } from '@heroicons/react/20/solid';
 import { useDispatch, useSelector } from 'react-redux';
 
-import AnimatedPage from '../components/AnimatedPage';
-import { setError, signUpUser } from '../features/user/UserSlice';
+import AnimatedPage from '../AnimatedPage';
+import { signUpUser } from '../../features/user/UserSlice';
 
 const Login = () => {
   // states
@@ -30,23 +30,19 @@ const Login = () => {
       lastName
     }
 
-    if(checkPassword === password) {
-      dispatch(signUpUser(userInformations)).then((result) => {
-        if(result.payload && result.error == null) {
-          setLastName('');
-          setName('');
-          setEmail('');
-          setPassword('');
-          setCheckPassword('');
-          navigate('/');
-        }
-      })
-    } else {
-      dispatch(setError("Veuillez faire correspondre vos mots de passe."))
-    }
+    dispatch(signUpUser(userInformations)).then((result) => {
+      if(result.payload && result.error == null) {
+        setLastName('');
+        setName('');
+        setEmail('');
+        setPassword('');
+        setCheckPassword('');
+        navigate('/');
+      }
+    })
   }
   return (
-    <section className="sm:pl-0 sm:pr-0 pl-4 pr-4 pt-16 h-[100vh] backgroundSignUp">
+    <section className="sm:pl-0 sm:pr-0 pl-4 pr-4 pt-16 pb-20 backgroundSignUp">
       <div className='text-center mx-auto max-w-96'>
         <AnimatedPage>
           <h2>Inscription</h2>
@@ -129,7 +125,7 @@ const Login = () => {
               className="inputBorderColor mt-6 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
               placeholder="Mot de passe"
             />
-            <p className='text-left mt-2 mb-12'>Vous avez déjà un compte ? <Link to="/login" className='font-bold hover:opacity-80'>Connectez-vous !</Link></p>
+            <p className='text-left mt-2 mb-12'>Vous avez déjà un compte ? <Link to="/login" className='font-bold hover:opacity-80'>Conntectez-vous !</Link></p>
             <button type='submit' className='mx-auto mainButton bgPrimaryColor'>
               {loading? 'Chargement...':'INSCRIPTION'}
             </button>

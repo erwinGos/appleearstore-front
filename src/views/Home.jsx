@@ -1,7 +1,7 @@
 import React from 'react';
-import PrimaryHomeSection from '../components/PrimaryHomeSection';
-import SecondaryHomeSection from '../components/SecondaryHomeSection';
-import ThirdHomeSection from '../components/ThirdHomeSection';
+import PrimaryHomeSection from '../components/Home/PrimaryHomeSection';
+import SecondaryHomeSection from '../components/Home/SecondaryHomeSection';
+import ThirdHomeSection from '../components/Home/ThirdHomeSection';
 
 const Home = () => {
     return (

@@ -3,9 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { XCircleIcon } from '@heroicons/react/20/solid';
 
-import AnimatedPage from '../components/AnimatedPage';
+import AnimatedPage from '../AnimatedPage';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../features/user/UserSlice';
+import { loginUser } from '../../features/user/UserSlice';
 
 const Login = () => {
 
