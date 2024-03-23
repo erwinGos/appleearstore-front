@@ -4,10 +4,10 @@ import blankProduct from '../../assets/blank_product.png';
 
 const ImageCaroussel = ({images}) => {
     return (
-        <div className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
-        <h2 className="sr-only">Images</h2>
-        <div className="pb-8">
-        {images.length > 0 ?
+        <div className="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0 w-1/2 h-1/2">
+            <h2 className="sr-only">Images</h2>
+            <div className="pb-8">
+                {images.length > 0 ?
                     <Carousel 
                     loop={true}
                     navigation={({ setActiveIndex, activeIndex, length }) => (
@@ -52,13 +52,14 @@ const ImageCaroussel = ({images}) => {
                     className="rounded-xl">
                     {images.map(singleImage => (
                         <div className='flex justify-center items-center h-full w-full overflow-hidden bg-gray-200'>
-                        <img src={`data:image/png;base64,${singleImage.image}`} className="object-contain max-w-full max-h-full" />
+                            <img src={`data:image/png;base64,${singleImage.image}`} className="object-contain max-w-full max-h-full" />
                         </div>
                     ))}
-        </Carousel> : 
-        <div>
-            <img src={blankProduct} alt="" />    
-        </div>}
+                    </Carousel> : 
+                <div>
+                    <img src={blankProduct} alt="" />    
+            </div>
+            }
 
         </div>
     </div>

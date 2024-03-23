@@ -8,7 +8,7 @@ const Orders = () => {
   const dispatch = useDispatch();
   const orders = useSelector(state => state.order);
   const [page, setPage] = useState(1);
-  const [maxResults, setMaxResults] = useState(15);
+  const [maxResults, setMaxResults] = useState(10);
 
   useEffect(() => {
     SearchForOrders(page)
@@ -21,6 +21,7 @@ const Orders = () => {
   };
 
   const SearchForOrders = (page) => {
+    console.log(page)
     dispatch(getMyOrdersPagination({page, maxResult: maxResults}));
   }
 

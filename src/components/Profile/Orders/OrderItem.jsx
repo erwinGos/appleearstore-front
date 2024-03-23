@@ -4,7 +4,6 @@ import ImageComponent from '../../ImageComponent';
 import { Link } from 'react-router-dom';
 
 const OrderItem = ({item}) => {
-    console.log(item)
   return (
     <div className='flex w-full justify-between mt-2'>
         <div className='flex'>

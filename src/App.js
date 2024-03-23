@@ -34,6 +34,7 @@ import Address from './components/Profile/Addresses/Address';
 import Orders from './components/Profile/Orders/Orders';
 import Returns from './components/Profile/Returns/Returns';
 import Tickets from './components/Profile/Tickets/Tickets';
+import SuccessPaymentPage from './views/SuccessPaymentPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -82,6 +83,7 @@ function App() {
 
               <Route path='/productdetails/:productId' Component={ProductPage} />
               <Route path='/catalog/:categoryName?' Component={Catalog} />
+              <Route path='/ordersuccesspayment/:orderNumber?' Component={SuccessPaymentPage} />
           </Routes>
       <Footer />
     </BrowserRouter> : null

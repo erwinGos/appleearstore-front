@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 
-export async function GetMyAddressesApi({page, maxResult}) {
+export async function GetMyOrdersApi({page, maxResult}) {
     const token = Cookies.get('auth_token');
     const request = await axios.get(`${process.env.REACT_APP_HOST_NAME}/Order/list?page=${page}&maxResult=${maxResult}`, {
         headers: {
@@ -16,9 +16,16 @@ export async function GetMyAddressesApi({page, maxResult}) {
     return data;
 }
 
-export async function CreateAddressApi(addressCreate) {
+export async function CreateOrderApi(params) {
     const token = Cookies.get('auth_token');
-    const request = await axios.post(`${process.env.REACT_APP_HOST_NAME}/Address/create`, addressCreate, {
+    const request = await axios.post(`${process.env.REACT_APP_HOST_NAME}/Order/create`, 
+    {
+        promoCode: [],
+        usedBalance: 0,
+        addressId: params.addressId,
+        products: params.products
+    },
+    {
         headers: {
             'Content-Type': 'application/json',
             Authorization: `${token}`
@@ -30,9 +37,10 @@ export async function CreateAddressApi(addressCreate) {
     return data;
 }
 
-export async function updateAddressApi(address) {
+export async function GetSinglerOrderByNumber(orderNumber) {
     const token = Cookies.get('auth_token');
-    const request = await axios.patch(`${process.env.REACT_APP_HOST_NAME}/Address/update`, address, {
+    const request = await axios.get(`${process.env.REACT_APP_HOST_NAME}/Order/getsinglebynumber/${orderNumber}`,
+    {
         headers: {
             'Content-Type': 'application/json',
             Authorization: `${token}`
@@ -43,19 +51,4 @@ export async function updateAddressApi(address) {
     const data = request.data;
     return data;
 }
-
-export async function deleteAddressApi(addressId) {
-    const token = Cookies.get('auth_token');
-    const request = await axios.delete(`${process.env.REACT_APP_HOST_NAME}/Address/${addressId}`, {
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `${token}`
-        },
-        withCredentials: true,
-        credentials: 'include'
-    });
-    const data = request.data;
-    return data;
-}
-
 

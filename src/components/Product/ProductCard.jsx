@@ -22,7 +22,11 @@ const ProductCard = ({product}) => {
       quantity: (checkItem ? checkItem.quantity : 0 ) + 1,
       colorName: ""
     };
-    dispatch(AddProduct(cart)).then(() => notify());
+    dispatch(AddProduct(cart)).then((res) => {
+      if(res.payload) {
+        notify()
+      };
+    });
 
   }
   return (

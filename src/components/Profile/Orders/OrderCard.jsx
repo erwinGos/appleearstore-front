@@ -1,6 +1,7 @@
 import React from 'react'
 import DateFormater from "../../DateFormater";
 import OrderItem from './OrderItem';
+import { Link } from 'react-router-dom';
 
 
 const OrderCard = ({order}) => {
@@ -30,9 +31,9 @@ const OrderCard = ({order}) => {
         </div>
         <div className='p-4 flex flex-col'>
             <div className='w-full flex items-start justify-between'>
-                <span className="font-extrabold">Date de livraison estimée le {DateFormater(order.estimatedDeliveryDate)}</span>
+                {order.hasBeenPaid ? <span className="font-extrabold">Date de livraison estimée le {DateFormater(order.estimatedDeliveryDate)}</span> : <span className="font-extrabold text-red-400">Veuillez payer votre commande.</span>}
                 <div className='flex flex-col w-[30%]'>
-                <button className='smallerBtn bgPrimaryColor m-1'>Suivre le colis</button>
+                <Link target="_blank" to={order.hasBeenPaid ? "" : order.stripePaymentUrl} className='smallerBtn bgPrimaryColor m-1'>{order.hasBeenPaid ? "Suivre le colis" : "Payer la commander"}</Link>
                 </div>
             </div>
             <div className='w-full flex flex-col items-start justify-between'>
