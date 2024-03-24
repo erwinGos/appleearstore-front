@@ -23,7 +23,7 @@ jobs:
           ls -alh
       - name: Transfer Branch Directory to Server
         run: |
-          sshpass -p ${{ secrets.PASSWORD }} scp -r -o StrictHostKeyChecking=no ./ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/path/to/destination
+          sshpass -p ${{ secrets.PASSWORD }} scp -r -o StrictHostKeyChecking=no ./branch-master.tar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/path/to/destination
 
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
