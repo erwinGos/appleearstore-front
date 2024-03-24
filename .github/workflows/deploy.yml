@@ -6,22 +6,25 @@ on:
       - master
 
 jobs:
-  save-build-to-images:
+  compress-and-transfer:
     runs-on: ubuntu-latest
     steps:
       - name: Pull Data from main branch
         uses: actions/checkout@v2
 
-      - name: Build Docker images
+      - name: Compress the branch content
         run: |
-          sudo docker-compose -f docker-compose.yml build
-          sudo docker save appleearstore-front_frontend > appleearstore-front_frontend.tar 
-      - name: Transfer Docker Image to Server
+          BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)
+          TAR_NAME="branch-${BRANCH_NAME}.tar"
+          tar -cvf $TAR_NAME .
+
+      - name: Transfer Tarball to Server
         run: |
-          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no appleearstore-front_frontend.tar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/root/
+          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no $TAR_NAME ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/root/
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-      - name: Load Docker Image on Server
+
+      - name: Execute deployment script on Server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -30,6 +33,3 @@ jobs:
           port: 22
           script: |
             ./post_front_deploy.sh
-            
-      - name: Remove Docker Images
-        run: sudo docker image prune -a -f
