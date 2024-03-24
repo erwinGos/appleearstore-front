@@ -15,10 +15,10 @@ jobs:
       - name: Build Docker images
         run: |
           sudo docker-compose -f docker-compose.yml build
-          sudo docker save e-commerce-modulable_frontend > e-commerce-modulable_frontend.tar 
+          sudo docker save appleearstore-front_frontend > appleearstore-front_frontend.tar 
       - name: Transfer Docker Image to Server
         run: |
-          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no e-commerce-modulable_frontend.tar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/root/
+          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no appleearstore-front_frontend.tar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/root/
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       - name: Load Docker Image on Server
