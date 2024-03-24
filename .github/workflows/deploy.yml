@@ -1,0 +1,37 @@
+name: Deploy Latest Release
+
+on:
+  push:
+    branches:
+      - minor-deploy
+      - major-deploy
+
+jobs:
+  save-build-to-images:
+    runs-on: self-hosted
+    needs: run-tests
+    steps:
+      - name: Pull Data from main branch
+        uses: actions/checkout@v2
+
+      - name: Build Docker images
+        run: |
+          sudo docker-compose -f docker-compose.yml build
+          sudo docker save e-commerce-modulable_frontend > e-commerce-modulable_frontend.tar 
+      - name: Transfer Docker Image to Server
+        run: |
+          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no e-commerce-modulable_frontend.tar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/root/
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      - name: Load Docker Image on Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            ./post_front_deploy.sh
+            
+      - name: Remove Docker Images
+        run: sudo docker image prune -a -f
