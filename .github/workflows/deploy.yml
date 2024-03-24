@@ -36,4 +36,4 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
-            docker-compose up
+            ./frontendreset.sh
