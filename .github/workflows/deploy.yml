@@ -18,9 +18,10 @@ jobs:
           TAR_NAME="branch-${BRANCH_NAME}.tar"
           tar -cvf $TAR_NAME .
 
-      - name: Transfer Tarball to Server
+      - name: Transfer Branch Directory to Server
         run: |
-          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no $TAR_NAME ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/root/
+          sshpass -p ${{ secrets.PASSWORD }} scp -r -o StrictHostKeyChecking=no ./ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/path/to/destination
+
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
 
