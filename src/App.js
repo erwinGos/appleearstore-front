@@ -35,6 +35,7 @@ import Orders from './components/Profile/Orders/Orders';
 import Returns from './components/Profile/Returns/Returns';
 import Tickets from './components/Profile/Tickets/Tickets';
 import SuccessPaymentPage from './views/SuccessPaymentPage';
+import { GetAllNotifications } from './features/notification/NotificationSlice';
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function App() {
   useEffect(() => {
     dispatch(checkAuthUser());
     dispatch(GetAllCart());
+    dispatch(GetAllNotifications());
   }, [])
   return (
     user.isAuth != null ?

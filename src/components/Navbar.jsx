@@ -21,11 +21,17 @@ function classNames(...classes) {
 const Navbar = () => {
   const user = useSelector(state => state.user);
   const cart = useSelector(state => state.products.cart);
+  const { notificationsList } = useSelector(state => state.notification);
   var totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
   if (totalQuantity >= 100) {
       totalQuantity = "++";
   }
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+
+  const togglePanel = () => {
+    setOpen(!open);
+  };
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -82,14 +88,77 @@ const Navbar = () => {
               <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
             </Link>
           </div>
-          <button
-            type="button"
-            className="relative rounded-full bg-transparent p-1 colorText"
-          >
-            <span className="absolute -inset-1.5" />
-            <span className="sr-only">View notifications</span>
-            <BellIcon className="h-6 w-6" aria-hidden="true" />
-          </button>
+          <div>
+      {/* Notification Button */}
+      <button
+        type="button"
+        className="relative rounded-full bg-transparent p-1 colorText"
+        onClick={togglePanel} // Toggle the panel on click
+      >
+        <span className="absolute -inset-1.5" />
+        <span className="sr-only">Vos notifications</span>
+        <BellIcon className="h-6 w-6" aria-hidden="true" />
+      </button>
+
+      {/* Slide-over Panel */}
+      <Transition.Root show={open} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+        <div className="fixed inset-0" />
+
+        <div className="fixed inset-0 overflow-hidden">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+              <Transition.Child
+                as={Fragment}
+                enter="transform transition ease-in-out duration-500 sm:duration-700"
+                enterFrom="translate-x-full"
+                enterTo="translate-x-0"
+                leave="transform transition ease-in-out duration-500 sm:duration-700"
+                leaveFrom="translate-x-0"
+                leaveTo="translate-x-full"
+              >
+                <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
+                  <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                    <div className="px-4 sm:px-6">
+                      <div className="flex items-start justify-between">
+                        <Dialog.Title className="leading-6 text-gray-900">
+                          Notifications
+                        </Dialog.Title>
+                        <div className="ml-3 flex h-7 items-center">
+                          <button
+                            type="button"
+                            className="relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            onClick={() => setOpen(false)}
+                          >
+                            <span className="absolute -inset-2.5" />
+                            <span className="sr-only">Fermer</span>
+                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="relative mt-6 flex-1 px-4 sm:px-6">
+                      <ul role="list" className="mt-6 space-y-6">
+                      {notificationsList.length > 0 ? notificationsList.map((notification, key) => (
+                        <li key={key} className="p-4 bg-black/5 divide-y divide-gray-200 border-b border-t border-gray-200 rounded-lg">
+                          <a className="block truncate text-sm font-semibold leading-6 text-gray-900">
+                          {notification.message}
+                            <span className="absolute inset-0" />
+                          </a>
+                        </li>
+                      )) : null}
+                      </ul>
+                    </div>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </div>
+      </Dialog>
+    </Transition.Root>
+    </div>
+
           <Menu as="div" className="relative ml-3 border-black">
             <div>
               <Menu.Button className="relative flex rounded-full border borderPrimaryColor">

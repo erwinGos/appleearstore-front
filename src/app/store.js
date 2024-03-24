@@ -6,6 +6,7 @@ import brandReducer from "../features/brand/brandSlice";
 import voucherReducer from "../features/voucher/VoucherSlice";
 import addressReducer from "../features/address/AddressSlice";
 import orderReducer from "../features/order/OrderSlice";
+import notificationReducer from "../features/notification/NotificationSlice";
 
 export const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
         colors: ColorReducer,
         brands: brandReducer,
         vouchers: voucherReducer,
-        order: orderReducer
+        order: orderReducer,
+        notification: notificationReducer
     }
 })
