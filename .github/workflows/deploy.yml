@@ -36,4 +36,4 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
-            ./post_front_deploy.sh
+            docker-compose up
